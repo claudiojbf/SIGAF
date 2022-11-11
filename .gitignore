@@ -1,7 +1,7 @@
 Lib/
 Scripts/
 pyvenv.cfg
-media/
+files/
 venv/
 
 *.log
