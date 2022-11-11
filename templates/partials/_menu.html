@@ -1,0 +1,55 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-expand-lg gestor-menu fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}"><img class="logo" src="{% static 'img/CEFAT.png'%}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon menu-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navegaçao" id="navbarSupportedContent">
+               
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if usuario.tipo_u.sigla == "FAC" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registrar_ocorrencia' %}">Ocorrencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastro' %}">Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cadastroFuncionario' %}">Funcionario</a>
+                    </li>
+                    {% endif %}
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Divisões
+                        </a>
+                        <ul class="dropdown-menu drop">
+                        <li><a class="dropdown-item" href="#">item1</a></li>
+                        <li><a class="dropdown-item" href="#">item2</a></li>
+                        <li><a class="dropdown-item" href="#">item3</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item perfil-link">
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+                    </li>
+                    <li class="nav-item sair-link">
+                        <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                    </li>
+                </ul>
+                <div class="perfil">
+                    <p>{{usuario.usuario.first_name}}</p>
+                    <div class="dropstart dropdown2">
+                        <div class="container perfil-img">
+                            <button class="navbar-brand perfil-button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{usuario.imagem.url}}"></button>
+                            <ul class="dropdown-menu drop">
+                              <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                              <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

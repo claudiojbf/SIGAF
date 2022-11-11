@@ -1,0 +1,86 @@
+/* CSS MENU */
+.gestor-menu{
+    background-color: #064597;
+}
+
+.logo{
+   position: absolute;
+   width: 90px;
+   top: 10px;
+   left: 50px;
+}
+
+.navegaçao{
+    margin-left: 200px;
+}
+
+.navegaçao a{
+    color: white;
+}
+
+.drop a{
+    color: black;
+}
+
+.menu-icon{
+    color: white;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+}
+
+.perfil-img img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.perfil p{
+    margin: 0;
+    color: white;
+}
+
+.perfil a{
+    color: black;
+}
+
+.perfil-link, .sair-link{
+    display: none;
+}
+
+.perfil-button{
+    background: none;
+    border: none;
+}
+
+@media (max-width:991px) {
+    .logo{
+        width: 60px;
+    }
+
+    .navegaçao{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .perfil{
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-right: 140px;
+    }
+
+    .perfil p{
+        margin-right: 15px;
+    }
+
+    .perfil-link, .sair-link{
+        display: block;
+    }
+
+    .drop:nth-child(2){
+        display: none;
+    }
+}

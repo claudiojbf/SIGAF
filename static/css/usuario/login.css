@@ -1,0 +1,130 @@
+/* CSS DO HTML */
+html{
+    height: 100%;
+}
+
+/* CSS DO BODY */
+body{
+    background-color: #1E1E1E;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Montserrat';
+}
+
+/* CSS DO LOGIN */
+.login-principal{
+    background-color: #B3B3B3;
+    height: 80%;
+    width: 80%;
+    display: flex;
+}
+
+.login-principal-div:first-child{
+    width: 50%;
+    padding: 30px 60px;
+}
+
+.login-principal-div:nth-child(2){
+    width: 50%;
+}
+
+.login-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-principal-txt h1{
+    font-size: 20px;
+}
+
+.login-principal-txt P{
+    font-size: 12px;
+}
+
+.logo-login{
+    width: 15%;
+}
+
+/* CSS LOGIN-DIVISÃO */
+.login-divisa{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.texto-divisa{
+    color: #022B6D;
+    font-size: 14px;
+}
+
+.login-divisa hr{
+    width: 30%;
+    border: 1px solid;
+}
+
+/* CSS FORMULÁRIO */
+.form-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.email, .senha, .botao{
+    border-radius: 25px;
+}
+
+.botao{
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #022B6D;
+    border: none;
+}
+
+.email-label,.senha-label{
+    color: #022B6D;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.checkbox-label{
+    font-size: 12px
+}
+
+.form-flex a{
+    text-decoration: none;
+    color: #022B6D;
+    font-size: 12px
+}
+
+/* CSS LINK DE CADASTRO */
+.link-cadastro p{
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.link-cadastro a{
+    text-decoration: none; 
+    color: #022B6D;  
+}
+
+/* CSS IMAGEM-JOGADORES */
+.div-jogadores{
+    background-image: url('./../../img/imagem-jogadores-cefat.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.div-jogadores>div{
+    background-color: rgba(0, 0, 100, 0.5);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.div-jogadores div h2{
+    text-align: center;
+    color: #ffffff;
+    margin: 0 20px;
+}

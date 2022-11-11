@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Login-CEFAT {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/usuario/login.css' %}">
+{% endblock %}
+{% block content %}
+
+     <!-- LOGIN -->
+     <section class="login-principal">
+        <div class="container-fluid login-principal-div">
+            <div class="login-container">
+                <div class="login-principal-txt">
+                    <h1>LOGIN</h1>
+                    <p>FAÇA O LOGIN E ACESSE O SISTEMA DE ATLETAS CEFAT</p>
+                </div>
+                <img class="logo-login" src="{% static 'img/logo-CEFAT.png' %}" alt="Logo do Centro de Formação de Altetas do Tirol">
+            </div>
+            <div>
+               
+                <!-- LOGIN-DIVISÃO -->
+                <div class="login-divisa">
+                    <hr>
+                    <p class="texto-divisa">SEUS DADOS:</p>
+                    <hr>
+                   
+                </div>
+                {% include "partials/_alert.html" %}
+                <!-- FORMULÁRIO -->
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label email-label">NOME DE USUARIO</label>
+                      <input type="text" name = "nome_de_usuario" class="form-control email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label senha-label">SENHA</label>
+                      <input type="password"name="senha" class="form-control senha" id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-primary botao">ENTRAR</button>
+                </form>
+            </div>
+        </div>
+        <!-- IMAGEM JOGADORES -->
+        <div class="login-principal-div div-jogadores">
+            <div>
+                <h2>CENTRO DE FORMAÇÃO DE ATLETAS DO TIROL</h2>
+            </div>
+        </div>
+    </section>
+{% endblock %}
