@@ -17,9 +17,18 @@ def login(request):
             user = auth.authenticate(request, username = nome_de_usuario, password = senha)
             if user is not None:
                 auth.login(request, user)
-                return redirect('index')
+                return redirect('redirecionar')
             else:
                 messages.error(request, "Senha invalida. Verifique se você digitou sua senha coretamente.")
         else:
             messages.error(request, "Email invalido. Verifique se você digitou seu email coretamente.")    
     return render(request, 'usuario/login.html')
+
+def logout(request):
+    """Campo para desconectar um usuario"""
+    auth.logout(request)
+    return redirect('login')
+
+@login_required(login_url='login')
+def Redirecionar(requets):
+    return redirect("index_facilitis")

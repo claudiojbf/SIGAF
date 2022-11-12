@@ -1,0 +1,114 @@
+body{
+    background-color: #1e1e1e;
+    font-family:'Montserrat';
+}
+
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section{
+    width: 80%;
+    background-color: #b1b1b1;
+}
+
+section:first-child{
+    margin-top: 150px;
+}
+
+section:last-child{
+    margin-bottom: 70px;
+}
+
+.gestor-pesquisa{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.ocorrencias{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.indices{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.indice{
+    background-color: white;
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.indice-pendente{
+    background-color: red;
+    color: white;
+}
+
+.indice-processo{
+    background-color: orange;
+    color: white;
+}
+
+.indice-resolvido{
+    background-color: green;
+    color: white;
+}
+
+.ocorrencia-container{
+    width: 100%;
+}
+
+.ocorrencias-titulo p{
+    font-size: 25px;
+    text-align: center;
+}
+
+.slide-content-ocorrencia{
+    width: 80%;
+    height: 55vh;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.slide-ocorrencia{
+    height: 50px;
+    /* border: 2px solid #1e1e1e; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slide-ocorrencia p{
+    margin: 0 0 0 15px;
+}
+
+.slide-ocorrencia a{
+    text-decoration: none;
+    color: #1e1e1e;
+}
+
+
+
+@media (max-width:990px) {
+    .navegaçao{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .perfil-link, .sair-link{
+        display: block;
+    }
+
+}

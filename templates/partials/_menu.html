@@ -1,8 +1,9 @@
 {% load static %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <header>
     <nav class="navbar navbar-expand-lg gestor-menu fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'index' %}"><img class="logo" src="{% static 'img/CEFAT.png'%}" alt=""></a>
+            <a class="navbar-brand" href="{% url 'redirecionar' %}"><img class="logo" src="{% static 'img/CEFAT.png'%}" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon menu-icon"></span>
             </button>
@@ -20,7 +21,7 @@
                         <a class="nav-link" href="{% url 'cadastroFuncionario' %}">Funcionario</a>
                     </li>
                     {% endif %}
-                    <!-- <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Divisões
                         </a>
@@ -29,9 +30,9 @@
                         <li><a class="dropdown-item" href="#">item2</a></li>
                         <li><a class="dropdown-item" href="#">item3</a></li>
                         </ul>
-                    </li> -->
+                    </li>
                     <li class="nav-item perfil-link">
-                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
+                        <a class="nav-link" href="">Perfil</a>
                     </li>
                     <li class="nav-item sair-link">
                         <a class="nav-link" href="{% url 'logout' %}">Sair</a>
@@ -41,9 +42,9 @@
                     <p>{{usuario.usuario.first_name}}</p>
                     <div class="dropstart dropdown2">
                         <div class="container perfil-img">
-                            <button class="navbar-brand perfil-button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{usuario.imagem.url}}"></button>
+                            <button class="navbar-brand perfil-button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{usuario.foto_de_perfil.url}}"></button>
                             <ul class="dropdown-menu drop">
-                              <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                              <li><a class="dropdown-item" href="">Perfil</a></li>
                               <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
                             </ul>
                         </div>
