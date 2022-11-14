@@ -1,0 +1,144 @@
+/* CSS DO HTML */
+html,body{
+    width: 100%;
+}
+
+/* CSS DO BODY */
+body{
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat';
+}
+h1{
+    color: white;
+}
+
+p{
+    margin: 0;
+}
+
+/* CSS PRINCIPAL-ATLETA */
+.principal-atleta{
+    width: 70%;
+    padding: 0 0 30px 0;
+    background-color: white;
+    margin-top: 70px;
+}
+
+.principal-atleta>div{
+    margin-top: 20px;
+    display: flex;
+}
+
+.atleta-container{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 500px;
+    /* ou 478px */
+}
+
+/* CSS ATLETA IMAGEM */
+.atleta-imagem{
+    background-color: #003D9B;
+    height: 350px;
+    width: 100%;
+    margin: 10px 20px;
+    border: 3px solid #003D9B;
+}   
+
+.atleta-imagem>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CSS DOS BOTÕES*/
+
+.botao-div{
+    margin-left: 17px;
+    width: 100%;
+}
+
+.botao{
+    width: 100%;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 0;
+    margin-top: 20px;
+}
+
+.botao-editar{
+    background-color: #003D9B;
+}
+
+.botao-editar:hover, .botao-editar:focus{
+    background-color: #377add;
+    color: white;
+}
+
+.botao-excluir{
+    background-color: #db0000;
+}
+
+.botao-excluir:hover, .botao-excluir:focus{
+    background-color: #ff3737;
+    color: white;
+}
+
+
+/* CSS DAS INFORMAÇÕES */
+.atleta-info-container{
+    display: flex;
+    width: 70%;
+}
+
+.atleta-info>div{
+    margin-bottom: 20px;
+    /* display: flex; */
+}
+
+.atleta-info{
+    margin: 20px 0 0 50px;
+    width: 50%;
+}
+
+
+.atleta-info-conteudo{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+@media(max-width:1050px){
+    .atleta-container{
+        width: 40%;
+    }
+
+    .atleta-info-container{
+        flex-direction: column;
+    }
+}
+
+@media(max-width:700px){
+    .principal-atleta>div{
+        flex-direction: column;
+    }
+
+    .atleta-container{
+        width: 50%;
+        align-self: center;
+    }
+    
+    .atleta-imagem, .botao-div{
+        margin: 0;
+    }
+
+    .atleta-info-container{
+        align-self: center;
+        margin: 0;
+    }
+}

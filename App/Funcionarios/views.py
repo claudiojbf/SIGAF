@@ -70,6 +70,32 @@ def cadastro_funcionario(request):
         return redirect('redirecionar')
     return render(request, 'funcionario/cadastro_funcionario.html', dados)
 
+@login_required(login_url="login")
+def listar_funcionarios(request):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    funcionarios = Funcionario.objects.all()
+
+    dados = {
+        "usuario":usuario_i, 
+        "funcionarios":funcionarios
+    }
+
+    return render(request, 'funcionario/listar_funcionarios.html', dados)
+
+@login_required(login_url="login")
+def visualizar_funcionario(request, funcionario_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    funcionario = get_object_or_404(Funcionario, pk=funcionario_id)
+
+    dados = {
+        "usuario":usuario_i, 
+        "funcionario":funcionario
+    }
+
+    return render(request, 'funcionario/visualizar_funcionario.html', dados)
+
         
         
         
