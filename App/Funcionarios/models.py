@@ -11,7 +11,7 @@ class Funcionario(models.Model):
 
     cpf = models.CharField(max_length=11, unique=True)
     foto_cpf = models.FileField(upload_to = 'funcionario/cpf')
-    rg = models.CharField(max_length=12, unique=True)
+    rg = models.CharField(max_length=50, unique=True)
     foto_rg = models.FileField(upload_to = 'funcionario/rg')
 
     funcao = models.CharField(max_length=50)

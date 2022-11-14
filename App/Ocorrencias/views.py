@@ -8,7 +8,7 @@ from App.Usuario.models import Usuario
 def IndexFacilities(request):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
-    ocorrencias = Ocorrencia.objects.all()
+    ocorrencias = Ocorrencia.objects.all().order_by("-id")
     o_abertos = Ocorrencia.objects.filter(status="ABT").count()
     o_em_andamento = Ocorrencia.objects.filter(status="EA").count()
     o_concluido = Ocorrencia.objects.filter(status="C").count()
