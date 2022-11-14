@@ -31,7 +31,7 @@
                     <div class="swiper-wrapper">
                         {% for ocorrencia in ocorrencias %}
                         <div class="swiper-slide slide-ocorrencia">
-                            <p><a href="">{{ocorrencia.titulo_da_ocorrencia}}</a></p>
+                            <p><a href="{% url 'visualizar_ocorrencia' ocorrencia.id %}">{{ocorrencia.titulo_da_ocorrencia}}</a></p>
                         </div>
                         {% endfor %}
                     </div>

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} {{ocorrencia.titulo_da_ocorrencia}} {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/facilitis/ocorrencia/visualizar_ocorrencia.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+
+<section>
+    <!-- <h1>Ocorrencias</h1> -->
+</section>
+<section class="ocorrencias">
+    <div class="titulo">
+        <hr>
+        <h2>{{ ocorrencia.titulo_da_ocorrencia }}</h2>
+        <hr>
+    </div>
+    <div class="detalhes">
+        <div>
+            <div>
+                <p>Local da Ocorrência:</p>
+                <p>{{ocorrencia.local.nome_do_local}}</p>
+            </div>
+
+            <div>
+                <p>Status:</p>
+            <p>{{ocorrencia.get_status_display}}</p>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <p>Nome:</p>
+                <p>{{ocorrencia.usuario.usuario.first_name}}</p>
+            </div>
+            <div>
+                <p>Email:</p>
+                <p>{{ocorrencia.usuario.usuario.email}}</p>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <p>Data da Ocorrência:</p>
+                <p>{{ocorrencia.data_de_criacao}}</p>
+            </div>
+            <!-- <div>
+                <p>Nivel de Urgência:</p>
+                <p>{{ocorrencia.nivel_urgencia.descricao}}</p>
+            </div> -->
+        </div>
+        <div>
+            <p>Detalhes da Ocorrencia:</p>
+            <p>{{ocorrencia.descricao_da_ocorrencia}}</p>
+        </div>
+
+    </div>   
+    <div class="botoes-ocorrencia">
+        {% if usuario.id == ocorrencia.usuario.id %}
+        <a href="{% url 'deletar_ocorrencia' ocorrencia.id %}"><button class="botao botao-pendente">Deletar</button></a>
+        <a href="{% url 'editar_ocorrencia' ocorrencia.id %}"><button class="botao botao-editar">Editar</button></a>
+        {% endif %}
+        <a href="{% url 'alterar_status_ocorrencia' ocorrencia.id 1 %}"><button class="botao botao-pendente">Pendente</button></a>
+        <a href="{% url 'alterar_status_ocorrencia' ocorrencia.id 2 %}"><button class="botao botao-processo">Em Processo</button></a>
+        <a href="{% url 'alterar_status_ocorrencia' ocorrencia.id 3 %}"><button class="botao botao-concluido">Concluído</button></a>
+    </div>         
+</section>
+
+<!-- LINK JQUERY / JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

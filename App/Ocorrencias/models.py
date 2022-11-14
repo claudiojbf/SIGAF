@@ -23,6 +23,7 @@ class Ocorrencia(models.Model):
     descricao_da_ocorrencia = models.TextField()
     status = models.CharField(max_length=3, choices=NIVEL, default="ABT")
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data_de_criacao = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.titulo_da_ocorrencia

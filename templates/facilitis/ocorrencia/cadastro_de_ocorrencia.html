@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Cadastro de Ocorrencia {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/facilitis/ocorrencia/formulario_ocorrencia.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+    <!-- <section>
+        <h1>Cadastro de Ocorrências</h1>
+    </section> -->
+    <section class="cadastro">
+        <form action="{% url 'cadastrar_ocorrencia' %}" method="POST" class="formulario">
+            {% csrf_token %}        
+                <div class="titulo">
+                    <hr>
+                    <h2>Cadastro de Ocorrências     </h2>
+                    <hr>
+                </div>
+                <div>
+                    <label for="nome" class="form-label cadastro-label">Sala que ocorreu o problema:</label>
+                    <select for="nome" class="form-control cadastro-input" name="local" id="">
+                        {% for local in locals %}
+                            <option value={{local.id}}>{{local.nome_do_local}}</option>   
+                        {% endfor %} 
+                    </select>
+
+                        <div>
+                            <label for="nome" class="form-label cadastro-label">Título da Ocorrência:</label>
+                            <input id="nome" class="form-control cadastro-input" name="titulo_da_ocorrencia" type="text" required>
+                        </div>
+                       
+    
+                      <div>
+                        <label for="nome" class="form-label cadastro-label">Descrição do Ocorrido:</label>
+                        <textarea id="nome" class="form-control cadastro-input" name="descricao_da_ocorrencia" type="text" required style="height: 100px; border-radius:20px;"></textarea>
+                      </div>
+
+                      <!-- <div>
+                        <label for="nome" class="form-label cadastro-label">Nível de Urgência:</label>
+                        <select for="nome" class="form-control cadastro-input" name="" id="">
+                            <option value="">Nível:</option>
+                            <option value="">Crítico:</option>
+                            <option value="">Urgente:</option>
+                            <option value="">Não Urgente:</option>
+                        </select>
+                      </div> -->
+                    
+                    <button class="botao">Enviar</button>
+                </div>
+        </form>
+    </section>
+
+    <!-- LINK JQUERY / JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script> -->
+{% endblock %}
