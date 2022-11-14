@@ -1,0 +1,209 @@
+/* CSS DO HTML */
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+/* CSS DO BODY */
+body{
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat';
+}
+h1{
+    color: white;
+}
+
+/* CSS DO CADASTRO PASSO 1 / PASSO2 */
+.cadastro{
+    width: 70%;
+    background-color: white;
+}
+
+.cadastro-label{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.cadastro-input{
+    border-radius: 50px;
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 80%;
+    margin-top: 20px;
+}
+.titulo h2{
+    text-align: center;
+    font-size: 25px;
+}
+
+.titulo hr{
+    width: 20%;
+    margin: 0 20px;
+    border-width: 2px;
+}
+
+.step-1,.step-2,.step-3{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 1s all;
+}
+
+.step-1>div,.step-2>div{
+    width: 80%;
+}
+
+.step-1-form-2{
+    display: flex;
+    justify-content: center;
+}
+.step-1-form-2 div{
+    width: 50%;
+    margin: 10px;
+}
+
+.step-1-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.step-1-button button{
+    width: 80%;
+    background-color: #003D9B;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 0;
+}
+
+.botoes{
+    display: flex;
+    width: 80%;
+    margin-top: 30px;
+}
+.botoes button{
+    background-color: #003D9B;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 0;
+    width: 50%;
+    margin: 5px 5px 0 5px;
+}
+
+/* CSS CADASTRO PASSO-3 */
+.step-3-img{
+    padding: 60px 75px;
+    background-color: #b1b1b1;
+    border-radius: 100%;
+    margin-top: 70px;
+}
+
+.botao-foto button{
+    border:none;
+    background-color: #003D9B;
+    border-radius: 50px;
+    color: white;
+    margin-top: 10px;
+}
+
+.botao-cadastro{
+    width: 80%;
+    display: flex;
+}
+
+.botao-cadastro button{
+    border:none;
+    background-color: #003D9B;
+    border-radius: 50px;
+    color: white;
+    padding: 5px 0;
+    margin: 105px 5px 5px 5px;
+    width: 50%;
+}
+
+
+.form-checkbox{
+    width: 80%;
+    margin-top: 20px;
+}
+
+.form-checkbox select{
+    border-radius: 50px;
+    padding: 5px 0;
+}
+
+.step-2,.step-3{
+    display: none;
+}
+
+/* CSS DOS BULLETS */
+.bullet{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* transition: 1s all ease-in-out; */
+}
+
+.bullet>span{
+    background-color: #b1b1b1;
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.bullet>span:nth-child(1){
+    background-color: #003D9B;
+}
+
+/*MOBILE*/
+@media(max-width:768px){
+    .step-1-form-2{
+        flex-wrap: wrap;
+    }
+    .step-1-form-2 div{
+        width: 100%;
+        margin: 10px;
+    }
+
+    .step-1-button{
+        margin-top: 40px;
+    }
+
+    .bullet{
+        margin-bottom: 20px;
+    }
+
+    .step-1-button button{
+        width: 100%;
+    } 
+
+    .botoes{
+        flex-wrap: wrap;
+    }
+    .botoes button{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .botao-cadastro{
+        flex-wrap: wrap;
+        margin-top: 100px;
+    } 
+
+    .botao-cadastro button{
+        width: 100%;
+        margin: 10px 5px 5px 5px;
+    }
+}

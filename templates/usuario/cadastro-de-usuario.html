@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Cadastro de Usuario {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/usuario/cadastro-de-usuario.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    <section>
+        <h1>Cadastro de Usuário</h1>
+    </section>
+    <section class="cadastro">
+        <form class="steps" action="{% url 'cadastro_usuario' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <!-- PASSO-1 -->
+            <div class="step-1" id="step-1">
+                <div class="titulo">
+                    <hr>
+                    <h2>Informações Pessoais</h2>
+                    <hr>
+                </div>
+                <div>
+                {% include "partials/_alert.html" %}
+                    <div class="form-nome">
+                        <label for="nome" class="form-label cadastro-label">Nome Completo</label>
+                        <input id="nome" name="nome" class="form-control cadastro-input" type="text" required>
+                    </div>
+
+                    <div class="form-email">
+                        <Label for="email" class="form-label cadastro-label">Email</Label>
+                        <input id="email" name="email" placeholder="SeuEmail@dominio.com" class="form-control cadastro-input" type="email" required>
+                    </div>
+
+                    <div class="step-1-form-2">
+                        <div class="form-tel">
+                            <label for="telefone" class="form-label cadastro-label">Telefone</label>
+                            <input id="telefone" name="telefone" placeholder="(XX) X XXXX-XXXX" class="form-control cadastro-input" type="tel" required>
+                        </div>
+
+                        <div class="form-data">
+                            <label for="data" class="form-label cadastro-label">Data de Nascimento</label>
+                            <input id="data" name="data_n" class="form-control cadastro-input" type="date" required>
+                        </div>
+                    </div>
+                    <div class="step-1-button">
+                    <button id="step-1-button" value="step-1">Próximo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO-2 -->
+            <div class="step-2" id="step-2">
+                <div class="titulo">
+                    <hr>
+                    <h2>Informações do Usuário</h2>
+                    <hr>
+                </div>
+                <div>
+                    <div class="form-login">
+                        <label for="login" class="form-label cadastro-label">Login</label>
+                        <input id="login" name="user_name" class="form-control cadastro-input" type="text" required>
+                    </div>
+
+                    <div class="form-senha">
+                        <label for="senha" class="form-label cadastro-label">Senha</label>
+                        <input id="senha" name ="senha" class="form-control cadastro-input" type="password" required>
+                    </div>
+
+                    <div class="form-confimar">
+                       <label for="confirma-senha" class="form-label cadastro-label">Confirmar Senha</label>
+                        <input id="confirma-senha" name="senha2" class="form-control cadastro-input" type="password" required>
+                    </div>
+
+                    <div class="form-checkbox">
+                        <select name = 'nivel_u'>
+                            {% for tipo in tipos_usuarios %}
+                            <option value="{{tipo.id}}">{{tipo.descricao_do_nivel}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="botoes">
+                    <button id="step-2-button-prev">Anterior</button>
+                    <button id="step-2-button-next">Próximo</button>
+                </div>
+            </div>
+
+            <!-- PASSO-3 -->
+            <div class="step-3" id="step-3">
+                <div class="titulo">
+                    <hr>
+                    <h2>Upload de Foto</h2>
+                    <hr>
+                </div>
+            <div class="step-3-img">
+                    <img src="">
+            </div>
+            <div class="botao-foto">
+                <input type="file" name="foto_perfil" required>
+            </div>
+            <div class="botao-cadastro">
+                <button id="step-3-button-prev">Anterior</button>
+                <button type="submit" >Finalizar Cadastro</button>
+            </div>
+            </div>
+        </form>
+        <div class="bullet">
+            <span id="bullet-1"> </span>
+            <span id="bullet-2"> </span>
+            <span id="bullet-3"> </span>
+        </div>
+    </section>
+
+    <!-- LINK JQUERY / JS -->
+    
+    <script src="{% static 'js/step.js'%}"></script>
+    
+{% endblock %}
