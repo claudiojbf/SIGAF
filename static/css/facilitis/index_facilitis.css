@@ -23,6 +23,10 @@ section:last-child{
     margin-bottom: 70px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .gestor-pesquisa{
     display: flex;
     justify-content: center;
