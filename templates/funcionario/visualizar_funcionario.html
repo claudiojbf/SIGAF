@@ -16,7 +16,7 @@
                     <img src="{{funcionario.foto_funcionario.url}}" alt="">
                 </div>
                 <div class="botao-div">
-                    <button class="btn botao botao-editar">Editar</button>
+                    <a href="{% url 'editar_funcionario' funcionario.id %}"><button class="btn botao botao-editar">Editar</button></a>
     
                     <!-- Button chama modal -->
                     <button type="button" class="btn botao botao-excluir" data-bs-toggle="modal" data-bs-target="#modal">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-                                  <button type="button" class="btn btn-primary">Sim</button>
+                                  <a href="{% url 'deletar_funcionario' funcionario.id %}"><button type="button" class="btn btn-primary">Sim</button></a>
                                 </div>
                             </div>
                         </div>

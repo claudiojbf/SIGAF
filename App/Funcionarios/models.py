@@ -19,7 +19,7 @@ class Funcionario(models.Model):
     cidade = models.CharField(max_length=50)
     bairro = models.CharField(max_length=50)
     uf = models.CharField(max_length=5)
-    horario_de_trabalho = models.DecimalField(max_digits=20, decimal_places=2)
+    horario_de_trabalho = models.CharField(max_length=2)
     admitido = models.DateTimeField(default=datetime.now)
     foto_funcionario = models.FileField(upload_to = 'FotoFuncionario', blank = True)
     ativo = models.BooleanField(default=True)
