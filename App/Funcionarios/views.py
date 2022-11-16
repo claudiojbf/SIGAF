@@ -102,6 +102,9 @@ def visualizar_funcionario(request, funcionario_id):
 @login_required(login_url="login")
 def deletar_funcionario(request, funcionario_id):
     funcionario = get_object_or_404(Funcionario, pk=funcionario_id)
+    os.remove(os.path.join(BASE_DIR, funcionario.foto_funcionario.path))
+    os.remove(os.path.join(BASE_DIR, funcionario.foto_cpf.path))
+    os.remove(os.path.join(BASE_DIR, funcionario.foto_rg.path))
     funcionario.delete()
 
     return redirect("redirecionar")
