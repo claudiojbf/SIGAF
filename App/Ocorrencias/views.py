@@ -5,13 +5,20 @@ from App.Usuario.models import Usuario
 
 # Create your views here.
 @login_required(login_url='login')
-def IndexFacilities(request):
+def IndexFacilities(request, status=""):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
     ocorrencias = Ocorrencia.objects.all().order_by("-id")
     o_abertos = Ocorrencia.objects.filter(status="ABT").count()
     o_em_andamento = Ocorrencia.objects.filter(status="EA").count()
     o_concluido = Ocorrencia.objects.filter(status="C").count()
+
+    if status == "ABT":
+        ocorrencias = Ocorrencia.objects.filter(status="ABT")
+    elif status == "EA": 
+        ocorrencias = Ocorrencia.objects.filter(status="EA")
+    elif status == "C":
+        ocorrencias = Ocorrencia.objects.filter(status="C")
 
     dados = {
         "usuario":usuario_i,
@@ -21,29 +28,6 @@ def IndexFacilities(request):
         "concluido":o_concluido  
     }
     return render(request, "facilitis/index_facilitis.html", dados)
-
-@login_required(login_url='login')
-def filtro_status(request, status):
-    usuario = request.user.id
-    usuario_i = Usuario.objects.get(usuario_id = usuario)
-    if status == 1:
-        ocorrencias = Ocorrencia.objects.filter(status="ABT")
-    elif status == 2:
-        ocorrencias = Ocorrencia.objects.filter(status="EA")
-    elif status == 3:
-        ocorrencias = Ocorrencia.objects.filter(status="C")
-    o_abertos = Ocorrencia.objects.filter(status="ABT").count()
-    o_em_andamento = Ocorrencia.objects.filter(status="EA").count()
-    o_concluido = Ocorrencia.objects.filter(status="C").count()
-
-    dados = {
-        "usuario":usuario_i,
-        "ocorrencias":ocorrencias,
-        "aberto":o_abertos,
-        "andamento":o_em_andamento,
-        "concluido":o_concluido  
-    }
-    return render(request, "facilitis/ocorrencia/index_facilitis_status.html", dados)
 
 
 @login_required(login_url="login")

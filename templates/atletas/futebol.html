@@ -1,0 +1,48 @@
+{%load static%}
+{% for posicao in posicoes%}
+<section class="gestor-atletas-atacante">
+    <div class="gestor-atletas-container">
+        <div class="gestor-atletas-container-titulo">
+        <h2>{{posicao.posicao}}</h2>
+        <a href="{% url 'cadastrar_atleta' modalidade.id %}"><button>+</button></a>
+        </div>
+        <div class="slide-content-atacante swiper">
+            <div class="swiper-wrapper">
+                {% for atleta in atletas %}
+                {% if atleta.posicao.id == posicao.id%}
+                <div class="swiper-slide">
+                    <img class="gestor-atletas-img" src="{{atleta.foto_atleta.url}}">
+                    <div class="gestor-atletas-informaçao">
+                        <p class="gestor-atletas-informaçao-titulo">Nome Completo</p>
+                        <p class="gestor-atletas-informaçao-conteudo">{{atleta.nome}}</p>
+
+                        <p class="gestor-atletas-informaçao-titulo"> Idade</p>
+                        <p class="gestor-atletas-informaçao-conteudo">{{atleta.idade}}</p>
+
+                        <p class="gestor-atletas-informaçao-titulo"> Nascimento</p>
+                        <p class="gestor-atletas-informaçao-conteudo">{{atleta.data_nacimento}}</p>
+
+                        <p class="gestor-atletas-informaçao-titulo">Naturalidade</p>
+                        <p class="gestor-atletas-informaçao-conteudo">{{atleta.naturalidade_uf}}</p>
+                        
+                        <p class="gestor-atletas-informaçao-titulo">Camisa</p>
+                        <p class="gestor-atletas-informaçao-conteudo">Lorem Ipsum</p>
+                        <div class="gestor-atletas-informaçao-link">
+                            <p><a class="gestor-atletas-informaçao-conteudo" href="#">Veja Mais</a></p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>        
+    <div class="swiper-button-next  botao-proximo"></div>
+    <div class="swiper-button-prev botao-voltar"></div>
+    <!-- <div class="swiper-pagination paginaçao"></div> -->        
+</section>
+{% endfor %}
+<!-- Swipper JS -->
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<!-- JS -->
+    <script src="{% static 'js/gestor-principal.js' %}"></script>

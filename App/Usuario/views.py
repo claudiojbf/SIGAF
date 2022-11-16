@@ -31,7 +31,12 @@ def logout(request):
 
 @login_required(login_url='login')
 def Redirecionar(requets):
-    return redirect("index_facilitis")
+    usuario = requets.user.id
+    nivel_de_usuario = get_object_or_404(Usuario, usuario_id = usuario)
+    if nivel_de_usuario.nivel_de_usuario.sigla == "FAC":
+        return redirect("index_facilitis")
+    elif nivel_de_usuario.nivel_de_usuario.sigla == "GES":
+        return redirect("index_atleta")
 
 
 # @login_required(login_url='login')

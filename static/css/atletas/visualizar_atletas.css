@@ -1,0 +1,247 @@
+body{
+    background-color: #1e1e1e;
+    font-family:'Montserrat';
+}
+
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section{
+    width: 80%;
+    background-color: #b1b1b1;
+}
+
+section:first-child{
+    margin-top: 150px;
+}
+
+section:last-child{
+    margin-bottom: 70px;
+}
+
+.gestor-pesquisa{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+
+/* PESQUISA */
+.gestor-pesquisa form{
+    width: 60%;
+    margin-right: 20px;
+}
+
+.gestor-pesquisa form>input{
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+    padding-left: 15px;
+}
+
+.gestor-pesquisa button{
+    border: none;
+    border-radius: 50px;
+    background-color: #003D9B;
+    color: white;
+    padding: 0 20px;
+    transition: 0.6s all;
+}
+
+.gestor-pesquisa button:hover{
+    background-color: #d3e5ff;
+    color: #003D9B;
+}
+
+/* CSS GESTOR-ATLETAS */
+.gestor-atletas-container>div{
+    display: flex;
+}
+
+.gestor-atletas-container>div>div>div{
+    background-color: #ad21ad;
+    height: 350px;
+    margin: 0 0 20px 0;
+    position: relative;
+}
+
+.gestor-atletas-container div>div:first-child{
+    margin-left: 10px;
+}
+
+.gestor-atletas-container div>div:last-child{
+    margin-right: 10px;
+}
+
+.gestor-atletas-container-titulo h2{
+    margin-left: 10px;
+}
+
+.gestor-atletas-container-titulo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.gestor-atletas-container-titulo button{
+    padding: 0 50px;
+    background: none;
+    color: #003D9B;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-color: #003D9B;
+    font-size: 20px;
+}
+
+.gestor-atletas-container-titulo button:hover{
+    cursor: pointer;
+    background-color: white;
+    transform: scale(1.1);
+    transition: 0.5s all;
+}
+
+.gestor-atletas-informaçao{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 0 0 10px;
+    background-color: #003D9B;
+    transition: 0.5s all;
+    opacity: 0;
+}
+
+.gestor-atletas-informaçao:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.gestor-atletas-informaçao-titulo{
+    margin: 0;
+    opacity: 0;
+}
+
+.gestor-atletas-informaçao-conteudo{
+    margin-bottom: 10px;
+    opacity: 0;
+    color: white;
+    margin-left: 5px;
+    font-size: smaller;
+}
+
+.gestor-atletas-informaçao-link{
+    background-color: white;
+    text-align: center;
+    width: 95%;
+    opacity: 0;
+    margin-top: 40px;
+}
+
+.gestor-atletas-informaçao-link a{
+    text-decoration: none;
+    color: #1e1e1e;
+}
+
+.gestor-atletas-informaçao:hover .gestor-atletas-informaçao-titulo, .gestor-atletas-informaçao:hover .gestor-atletas-informaçao-conteudo, .gestor-atletas-informaçao:hover .gestor-atletas-informaçao-link{
+    opacity: 1;
+}
+
+.gestor-atletas-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+}
+
+
+/* SLIDES CSS */
+.botao-proximo, .botao-voltar{
+    position: absolute;
+    top: 450px;
+}
+
+.botao-proximo-goleiro, .botao-voltar-goleiro{
+    position: absolute;
+    top: 900px;
+}
+
+.botao-proximo-zagueiro, .botao-voltar-zagueiro{
+    position: absolute;
+    top: 1350px;
+}
+
+.botao-proximo-meioCampo, .botao-voltar-meioCampo{
+    position: absolute;
+    top: 1800px;
+}
+
+.botao-proximo-lateralEsquerdo, .botao-voltar-lateralEsquerdo{
+    position: absolute;
+    top: 2250px;
+}
+
+.botao-proximo-lateralDireito, .botao-voltar-lateralDireito{
+    position: absolute;
+    top: 2700px;
+}
+
+.botao-proximo-volante, .botao-voltar-volante{
+    position: absolute;
+    top: 3150px;
+}
+
+.slide-content-atacante, .slide-content-goleiro, .slide-content-zagueiro, .slide-content-meioCampo, .slide-content-lateralEsquerdo, .slide-content-lateralDireito, .slide-content-volante{
+    margin: 0 20px 30px 0;
+    overflow: hidden;
+}
+
+@media(max-width:910px) {
+    .botao-proximo, .botao-voltar, .botao-proximo-goleiro, .botao-voltar-goleiro,  .botao-proximo-zagueiro, .botao-voltar-zagueiro, .botao-proximo-meioCampo, .botao-voltar-meioCampo, .botao-proximo-lateralEsquerdo, .botao-voltar-lateralEsquerdo, .botao-proximo-lateralDireito, .botao-voltar-lateralDireito, .botao-proximo-volante, .botao-voltar-volante{
+        display: none;
+     }
+}
+
+@media (max-width:990px) {
+    .navegaçao{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .perfil-link, .sair-link{
+        display: block;
+    }
+}
+
+@media(max-width:520px) {
+    .gestor-atletas-container-titulo{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gestor-atletas-container-titulo button{
+        width: 80%;
+        margin: 5px 10px;
+    }
+
+    .gestor-pesquisa{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gestor-pesquisa form{
+        width: 80%;
+        margin: 5px 10px;
+    }
+
+    .botao-proximo, .botao-voltar, .botao-proximo-goleiro, .botao-voltar-goleiro,  .botao-proximo-zagueiro, .botao-voltar-zagueiro, .botao-proximo-meioCampo, .botao-voltar-meioCampo, .botao-proximo-lateralEsquerdo, .botao-voltar-lateralEsquerdo, .botao-proximo-lateralDireito, .botao-voltar-lateralDireito, .botao-proximo-volante, .botao-voltar-volante{
+       display: none;
+    }
+}

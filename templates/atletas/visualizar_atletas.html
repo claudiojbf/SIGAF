@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/atletas/visualizar_atletas.css' %}">
+{% endblock %}
+{% block content %}   
+    {% include 'partials/_menu.html' %}
+    <main>
+        <section class="gestor-pesquisa">
+            <form action="#">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+            </form>
+            <button>Pesquisar</button>
+        </section>
+
+        {% for modalidade in modalidades %}
+            {% if modalidade.id == modalidade_i.id %}
+                {% include 'atletas/futebol.html'%}
+                
+            {% endif %}
+        {% endfor %}
+    </main>
+
+{% endblock %}

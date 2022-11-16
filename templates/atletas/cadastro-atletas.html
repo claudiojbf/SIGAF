@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Cadastro de Atletas - CEFAT{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/atletas/cadastro-atletas.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    <div class="cadastro_atletas__titulo">
+        <h1>Cadastro de atletas</h1>
+    </div>
+    <form class="cadastro_atletas" action="{% url 'cadastrar_atleta' modalidade.id        %}" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {% include 'partials/_alert.html' %}
+
+        <div class="form-group">
+            <label class="primaria">Nome completo</label>
+            <input type="text" class="form-control" name="nome" required placeholder="sua resposta">
+        </div>
+        <div class="form-group">
+            <label class="primaria">Apelido</label>
+            <input type="text" class="form-control" name="apelido" placeholder="nome utilizado diariamente" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Data de nascimento</label>
+            <input id="Nascimento" type="date" name="data_nacimento" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">RG</label>
+            <input type="number" class="form-control" name="rg" placeholder="Ex: 2008000010" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">CPF</label>
+            <input class="form-control" name="cpf" placeholder="Ex: 012.345.678-10" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                title="seu cpf deve manter a seguinte estrutura: nnn.nnn.nnn-nn">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Perna dominante</label>
+            <div class="radio">
+                <label for="optionsRadios1" class="secundaria">
+                    <input type="radio" name="perna_dominante" id="optionsRadios1" value='Direita' checked>
+                    Direita
+                </label>
+            </div>
+            <div class="radio">
+                <label for="optionsRadios2" class="secundaria">
+                    <input type="radio" name="perna_dominante" id="optionsRadios2" value='Esquerda'>
+                    Esquerda
+                </label>
+            </div>
+            <div class="radio">
+                <label for="optionsRadios3" class="secundaria">
+                    <input type="radio" name="perna_dominante" id="optionsRadios3" value='Ambas'>
+                    Ambas
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Qual o nome de sua escola e qual o seu nível de ensino?</label>
+            <input id="nomeEscola" type="text" name="matricula_escolar" class="form-control" placeholder="Ex: Colégio Dáulia Bringel" required value="">
+            <label class="primaria">Qual sua serie</label>
+            <input id="serie" type="text" name="serie" class="form-control" placeholder="ex: 9° " required value="">
+
+        </div>
+        <div class="radio">
+            <label for="optionsRadios4" class="secundaria">
+                <input type="radio" name="nivel_escolar" id="optionsRadios4" value="fundamental">
+                Ensino fundamental
+            </label>
+        </div>
+        <div class="radio">
+            <label for="optionsRadios5" class="secundaria">
+                <input type="radio" name="nivel_escolar" id="optionsRadios5" value="médio">
+                Ensino médio
+            </label>
+        </div>
+        <div class="checkbox">
+            <label class="secundaria">
+                <input type="checkbox" name="sem_escolaridade" id="blankCheckbox1" value="" aria-label="..." onclick="negar()">
+                Não frequento nenhuma instituição escolar
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="estado" class="primaria">Naturalidade(estado)</label>
+            <input id="estado" type="text" name="naturalidade_uf" class="form-control" placeholder="Ex: Ceará" required maxlength="19"
+                minlength="4">
+        </div>
+
+        <div class="form-group">
+            <label for="cidade" class="primaria">Cidade</label>
+            <input id="cidade" type="text" name="cidade" class="form-control" placeholder="Ex: Fortaleza" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bairro" class="primaria">Bairro</label>
+            <input id="bairro" type="text" name="bairro" class="form-control" placeholder="Ex: Bom Jardim" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Endereço</label>
+            <input type="text" name="endereco" class="form-control" required placeholder="sua resposta">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">N° da casa</label>
+            <input type="number" name="numero_casa" class="form-control" required placeholder="sua resposta">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">CEP</label>
+            <input class="form-control" name="cep" placeholder="Ex: 65805-000" required maxlength="9">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Telefone pra contato</label>
+            <input type="number" name="telefone" class="form-control" placeholder="(xx)xxxxx-xxxx" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">N° whatsapp</label>
+            <input type="number" name="whatsapp" class="form-control" placeholder="(xx)xxxxx-xxxx" required>
+        </div>
+        <div class="form-group">
+            <label class="primaria">N° whatsapp (opcional)</label>
+            <input type="number" name="whatsapp2" class="form-control" placeholder="(xx)xxxxx-xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Nome do pai</label>
+            <input type="text" name="nome_pai" class="form-control" required placeholder="sua resposta">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Nome da mãe</label>
+            <input type="text" name="nome_mae" class="form-control" required placeholder="sua resposta">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Telefone do responsável (obrigatório)</label>
+            <input type="number" name="telefone_responsavel" class="form-control" placeholder="(xx)xxxxx-xxxx" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Telefone do responsável (opcional)</label>
+            <input type="number" name="telefone_responsavel2" class="form-control" placeholder="(xx)xxxxx-xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Altura</label>
+            <input type="number" name="altura" class="form-control" placeholder="1,80m" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Peso</label>
+            <input type="number" name="peso" class="form-control" placeholder="70kg" required>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Qual o seu plano de saúde?</label>
+            <input id="planoSaude" name="plano_saude" type="text" class="form-control" required placeholder="sua resposta">
+            <div class="checkbox">
+                <label class="secundaria">
+                    <input type="checkbox" id="blankCheckbox2" name="semPlanoSaude" value="" aria-label="..." onclick="negar()">
+                    Não tenho plano de saúde
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="primaria">Você tem alguma alergia? Se sim, qual?</label>
+            <input id="alergia" name="alergia" type="text" class="form-control" placeholder="sua resposta" value="">
+            <div class="checkbox">
+                <label class="secundaria">
+                    <input type="checkbox" name="semalergia" id="blankCheckbox3" value="" aria-label="..." onclick="negar()">
+                    Não tenho alergia
+                </label>
+            </div>
+        </div>
+        <div class="form-group finalizacao">
+            <div class="finalizacao-posicoes">
+                <label class="primaria">Qual sua posição como jogador?</label>
+                
+        {% if posicoes %}
+        {% for posicao in posicoes %}
+        <div class="radio">
+            <label class="secundaria">
+                <input type="radio" name="posicao" id="optionsRadios6" value="{{posicao.id}}">
+                {{posicao.nome}}
+            </label>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <label class="primaria">Qual sua subdivisão?</label>
+        {% if subdivisoes %}
+        {% for subdivisao in subdivisoes %}
+        <div class="radio">
+            <label class="secundaria">
+                <input type="radio" name="subdivisao" id="optionsRadios6" value="{{subdivisao.id}}">
+                {{subdivisao.nome}}
+            </label>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="form-group">
+            <label class="primaria">Imagem</label>
+            <input type="file" name="image" class="form-control"  required>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    <script src="{% static 'js/cadastro-atletas.js' %}"></script>
+     <!-- Swipper JS -->
+     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+     <!-- JS -->
+     <script src="{% static 'js/gestor-principal.js' %}"></script>
+{% endblock %}

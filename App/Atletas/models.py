@@ -14,7 +14,7 @@ class Modalidade(models.Model):
 
 class SubDivisao(models.Model):
     modalidade = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
-    sub_divisao = models.CharField(max_length=10)
+    sub_divisao = models.CharField(max_length=20)
 
     def __str__(self):
         if len(self.sub_divisao) <= 2:
