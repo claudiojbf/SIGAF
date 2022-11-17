@@ -36,7 +36,7 @@ class Posicao(models.Model):
 
 class Atleta(models.Model):
     PERNA = (
-        ("D", "Diretita"),
+        ("D", "Direita"),
         ("E", "Esquerda"),
         ("A", "Ambidestro")
     )
@@ -69,6 +69,12 @@ class Atleta(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    def peso_tratado(self):
+        return self.peso[0:3] + "." + self.peso[3:]
+    
+    def altura_tratada(self):
+        return self.altura[0:1] + "." + self.altura[1:]
 
     def idade(self):
         hoje = date.today()

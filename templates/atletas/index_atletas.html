@@ -7,7 +7,7 @@
 {% include 'partials/_menu.html' %}
     <div style="margin-top: 200px">
     {% for modalidade in modalidades %}
-        <a href="{% url 'visualizar_atletas' modalidade.id %}"><button>{{modalidade.nome_da_modalidade}}</button></a>
+        <a href="{% url 'listar_atletas' modalidade.id %}"><button>{{modalidade.nome_da_modalidade}}</button></a>
     {% endfor %}
     </div>
 

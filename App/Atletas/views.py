@@ -21,7 +21,7 @@ def AtletaIndex(request):
     return render(request, "atletas/index_atletas.html", dados)
 
 @login_required(login_url="login")
-def visualizar_atletas(request, modalidade_id):
+def listar_atletas(request, modalidade_id):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
     modalidades = Modalidade.objects.all().order_by("id")
@@ -37,7 +37,7 @@ def visualizar_atletas(request, modalidade_id):
         "atletas":atletas
     }
 
-    return render(request, "atletas/visualizar_atletas.html", dados)
+    return render(request, "atletas/listar_atletas.html", dados)
 
 @login_required(login_url="login")
 def cadastrar_atleta(request, modalidade_id):
@@ -138,3 +138,16 @@ def cadastrar_atleta(request, modalidade_id):
         atleta.save()
         return redirect('redirecionar')
     return render(request, 'atletas/cadastro_atletas.html', dados)
+
+@login_required(login_url="login")
+def visualizar_atleta(request, atleta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    atleta = get_object_or_404(Atleta, pk=atleta_id)
+
+    dados = {
+        "usuario":usuario_i,
+        "atleta":atleta
+    }
+
+    return render(request, "atletas/visualizar_atleta.html", dados)

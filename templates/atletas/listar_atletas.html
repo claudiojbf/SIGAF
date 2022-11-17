@@ -2,7 +2,7 @@
 {% load static %}
 {% block 'title' %} Gestor - CEFAT {% endblock %}
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/atletas/visualizar_atletas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/atletas/listar_atletas.css' %}">
 {% endblock %}
 {% block content %}   
     {% include 'partials/_menu.html' %}
@@ -16,7 +16,7 @@
 
         {% for modalidade in modalidades %}
             {% if modalidade.id == modalidade_i.id %}
-                {% include 'atletas/futebol.html'%}
+                {% include 'atletas/jogador.html'%}
             {% endif %}
         {% endfor %}
     </main>
