@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block 'title' %} {{funcionario.nome}} {% endblock %}
+{% block 'title' %} {{atleta.nome}} {% endblock %}
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'css/atletas/visualizar_atleta.css' %}">
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
     <section>
-        <h1>Funcionario</h1>
+        <h1>Atleta/h1>
     </section>
     <section class="principal-atleta">
         <div>
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-                                  <a href=""><button type="button" class="btn btn-primary">Sim</button></a>
+                                  <a href="{% url 'deletar_atleta' atleta.id %}"><button type="button" class="btn btn-primary">Sim</button></a>
                                 </div>
                             </div>
                         </div>

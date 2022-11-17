@@ -4,6 +4,8 @@ from django.contrib import messages
 from .models import *
 from .util import *
 from App.Usuario.models import Usuario
+import os
+from config.settings import BASE_DIR
 
 # Create your views here.
 
@@ -151,3 +153,11 @@ def visualizar_atleta(request, atleta_id):
     }
 
     return render(request, "atletas/visualizar_atleta.html", dados)
+
+@login_required(login_url="login")
+def deletar_atleta(request, atleta_id):
+    atleta = get_object_or_404(Atleta, pk=atleta_id)
+    os.remove(os.path.join(BASE_DIR, atleta.foto_atleta.path))
+    atleta.delete()
+
+    return redirect('redirecionar')
