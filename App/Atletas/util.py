@@ -1,3 +1,5 @@
+from validate_docbr import CPF
 
-def valida_campo_vazio(valor):
-    return not valor.strip()
+def validar_documentos(cpf):
+    cpf_i = CPF()
+    return cpf_i.validate(cpf)

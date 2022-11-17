@@ -10,141 +10,140 @@
         <h1>Cadastro de atletas</h1>
     </section>
     <section class="cadastro">
-        <form class="formulario">
+        <form class="formulario" action="{% url 'cadastrar_atleta' modalidade.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}   
+            {% include 'partials/_alert.html' %}
             <div class="titulo">
                 <hr>
                 <h2>Informações Pessoais</h2>
                 <hr>
             </div>
             <div>
-                <label for="nome" class="form-label cadastro-label">Nome Completo</label>
-                <input id="nome" class="form-control cadastro-input" type="text" required>
+                <label for="nome" class="form-label cadastro-label">Nome Completo*</label>
+                <input id="nome" class="form-control cadastro-input" name="nome" type="text" required>
 
                 <label for="apelido" class="form-label cadastro-label">Apelido</label>
-                <input id="apelido" class="form-control cadastro-input" type="text" required>
+                <input id="apelido" class="form-control cadastro-input" name="apelido" value="" type="text" >
 
-                <label for="dataNascimento" class="form-label cadastro-label">Data de nascimento</label>
-                <input id="dataNascimento" class="form-control cadastro-input" type="date" required>
+                <label for="dataNascimento" class="form-label cadastro-label">Data de nascimento*</label>
+                <input id="dataNascimento" class="form-control cadastro-input" name="data_nacimento" type="date" required>
 
-                <label for="idade" class="form-label cadastro-label">Idade</label>
-                <input id="idade" class="form-control cadastro-input" type="number" required placeholder="15">
+                <label for="cpf" class="form-label cadastro-label">CPF*</label>
+                <input id="cpf" class="form-control cadastro-input" placeholder="EX:11122233344" name="cpf" type="text" required
+                    pattern="\d{11}"
+                    title="seu cpf não pode conter caracteres especiais. ex:11122233344">
 
-                <label for="cpf" class="form-label cadastro-label">CPF</label>
-                <input id="cpf" class="form-control cadastro-input" type="text" required
-                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                    title="seu cpf deve manter a seguinte estrutura: nnn.nnn.nnn-nn">
+                <label for="RG" class="form-label cadastro-label">RG*</label>
+                <input id="RG" class="form-control cadastro-input" name="rg" type="text" required placeholder="Ex: 2008000010">
 
-                <label for="RG" class="form-label cadastro-label">RG</label>
-                <input id="RG" class="form-control cadastro-input" type="number" required placeholder="Ex: 2008000010">
+                <label for="naturalidade" class="form-label cadastro-label">Naturalidade(estado)*</label>
+                <input id="naturalidade" class="form-control cadastro-input" name="naturalidade_uf" type="text" required
+                    placeholder="Ex: CE" required maxlength="2">
 
-                <label for="naturalidade" class="form-label cadastro-label">Naturalidade(estado)</label>
-                <input id="naturalidade" class="form-control cadastro-input" type="text" required
-                    placeholder="Ex: Ceará" required maxlength="19" minlength="4">
+                <label for="cidade" class="form-label cadastro-label">Cidade*</label>
+                <input id="cidade" class="form-control cadastro-input" name="cidade" type="text" required placeholder="Ex: Fortaleza">
 
-                <label for="cidade" class="form-label cadastro-label">Cidade</label>
-                <input id="cidade" class="form-control cadastro-input" type="text" required placeholder="Ex: Fortaleza">
-
-                <label for="bairro" class="form-label cadastro-label">Bairro</label>
-                <input id="bairro" class="form-control cadastro-input" type="text" required
+                <label for="bairro" class="form-label cadastro-label">Bairro*</label>
+                <input id="bairro" class="form-control cadastro-input" name="bairro" type="text" required
                     placeholder="Ex: Bom Jardim">
 
-                <label for="endereco" class="form-label cadastro-label">Endereço</label>
-                <input id="endereco" class="form-control cadastro-input" type="text" required>
+                <label for="endereco" class="form-label cadastro-label">Endereço*</label>
+                <input id="endereco" class="form-control cadastro-input" name="endereco" type="text" required>
 
-                <label for="numeroCasa" class="form-label cadastro-label">N° da casa</label>
-                <input id="numeroCasa" class="form-control cadastro-input" type="number" required>
+                <label for="numeroCasa" class="form-label cadastro-label">N° da casa*</label>
+                <input id="numeroCasa" class="form-control cadastro-input" name="numero_casa" type="number" required>
 
-                <label for="cep" class="form-label cadastro-label">CEP</label>
-                <input id="cep" class="form-control cadastro-input" placeholder="Ex: 65805-000" required maxlength="9"
-                    required>
+                <label for="cep" class="form-label cadastro-label">CEP*</label>
+                <input id="cep" class="form-control cadastro-input" name="cep" placeholder="Ex: 65805000" required maxlength="8"
+                pattern="\d{8}"
+                title="O cep deve conter apenas numeros."   
+                required>
 
-                <label for="telefone" class="form-label cadastro-label">Telefone para contato</label>
-                <input id="telefone" class="form-control cadastro-input" type="number" required>
+                <label for="telefone" class="form-label cadastro-label">Telefone para contato*</label>
+                <input id="telefone" class="form-control cadastro-input" placeholder="88944445555" name="telefone" type="text"
+                pattern="\d{11}"
+                title="O telefone deve conter apenas digitos deve conter apenas numeros." 
+                required>
 
-                <label for="whatsapp" class="form-label cadastro-label">N° whatsapp</label>
-                <input id="whatsapp" class="form-control cadastro-input" type="number" required
-                    placeholder="(xx)xxxxx-xxxx">
+                <label for="whatsapp" class="form-label cadastro-label">N° whatsapp*</label>
+                <input id="whatsapp" class="form-control cadastro-input" name = "whatsapp" type="text" required
+                placeholder="88944445555"
+                pattern="\d{11}"
+                title="O telefone deve conter apenas digitos deve conter apenas numeros." >
 
                 <div class="input-duplo">
                     <div>
                         <label for="TelefoneObrigatorio" class="form-label cadastro-label">Telefone
                             responsável(obrigatório)</label>
-                        <input id="TelefoneObrigatorio" class="form-control cadastro-input" type="number" required
-                            placeholder="(xx)xxxxx-xxxx">
+                        <input id="TelefoneObrigatorio" class="form-control cadastro-input" name="telefone_responsavel" type="text" required
+                        pattern="\d{11}"
+                        title="O telefone deve conter apenas digitos deve conter apenas numeros."     
+                        placeholder="88944445555">
                     </div>
                     <div>
                         <label for="nome" class="form-label cadastro-label">Telefone responsável(opcional)</label>
-                        <input id="nome" class="form-control cadastro-input" type="number" required
-                            placeholder="(xx)xxxxx-xxxx">
+                        <input id="nome" class="form-control cadastro-input" type="number" name="telefone_responsavel2" value=""
+                        pattern="\d{11}"
+                        title="O telefone deve conter apenas digitos deve conter apenas numeros." 
+                        placeholder="88944445555">
                     </div>
                 </div>
                 <div class="input-duplo">
                     <div>
                         <label for="nomePai" class="form-label cadastro-label">Nome do pai</label>
-                        <input id="nomePai" class="form-control cadastro-input" type="text" required>
+                        <input id="nomePai" class="form-control cadastro-input" type="text" name="nome_pai" value="">
                     </div>
                     <div>
                         <label for="nomeMae" class="form-label cadastro-label">Nome da mãe</label>
-                        <input id="nomeMae" class="form-control cadastro-input" type="text" required>
+                        <input id="nomeMae" class="form-control cadastro-input" type="text" name="nome_mae" value="" >
                     </div>
                 </div>
 
                 <label for="altura" class="form-label cadastro-label">Altura</label>
-                <input id="altura" class="form-control cadastro-input" type="number" required>
+                <input id="altura" class="form-control cadastro-input" type="number" name="altura"
+                pattern="\d{3}"
+                title="Digite apenas numeros." 
+                placeholder="EX:188"
+                required>
 
                 <label for="peso" class="form-label cadastro-label">Peso</label>
-                <input id="peso" class="form-control cadastro-input" type="text" required>
+                <input id="peso" class="form-control cadastro-input" type="text" name="peso"
+                pattern="\d{5}"
+                title="Digite apenas numeros." 
+                placeholder="EX:08880"
+                required>
 
                 <div class="select">
-                    <select>
-                        <option value="" selected disabled>Perna dominante</option>
-                        <option value="">Direita</option>
-                        <option value="">Esquerda</option>
-                        <option value="">Ambidestro</option>
+                    <select name="perna_dominante">
+                        <option value="D">Direita</option>
+                        <option value="E">Esquerda</option>
+                        <option value="A">Ambidestro</option>
                     </select>
                 </div>
 
                 <div class="select">
-                    <select>
-                        <option value="" selected disabled>Qual o nome de sua escola e qual o seu nível de ensino?
-                        </option>
-                        <option value="">Ensino fundamental</option>
-                        <option value="">Ensino Médio</option>
-                        <option value="">Não frequento nenhuma instituição escolar</option>
+                    <select name="nivel_escolar">
+                        <option value="Ensino Fundamental">Ensino fundamental</option>
+                        <option value="Ensino Medio">Ensxino Médio</option>
+                        <option value="Ensino Superior">Ensino Superior</option>
+                        <option value="Sem Escolaridade">Não frequento nenhuma instituição escolar</option>
                     </select>
                 </div>
 
                 <label id="planoSaude" class="form-label cadastro-label">Qual o seu plano de saúde?</label>
-                <input id="planoSaude" type="text" class="form-control" required>
-                <div class="grupo-checkbox">
-                    <div>
-                        <label for="teste">Não tenho plano de saúde</label>
-                        <input type="checkbox" name="teste" id="planoSaude">
-                    </div>
-                </div>
+                <input id="planoSaude" type="text" class="form-control" name="plano_saude" value="Sem plano de saude">
 
                 <label class="form-label cadastro-label">Você tem alguma alergia? Se sim, qual?</label>
-                <input id="alergia" type="text" class="form-control" required placeholder="sua resposta">
-                    <div class="grupo-checkbox">
-                        <div>
-                            <label for="teste">Não tenho alergia</label>
-                            <input type="checkbox" name="teste" id="">
-                        </div>
-                    </div>
+                <input id="alergia" type="text" class="form-control" name="alergia" value="Não possuo alergia" placeholder="sua resposta">
 
                     <div class="select">
-                        <select>
-                            <option value="" selected disabled>Qual sua posição</option>
-                            <option value="">goleiro</option>
-                            <option value="">lateral(direito)</option>
-                            <option value="">lateral(esquerdo)</option>
-                            <option value="">zagueiro</option>
-                            <option value="">volante</option>
-                            <option value="">meia</option>
-                            <option value="">atacante</option>
-                            <option value="">outro</option>
+                        <select name="posicao">
+                            {% for posicao in posicoes%}                         
+                                <option value="{{posicao.id}}">{{posicao.posicao}}</option>
+                            {% endfor %}
                         </select>
                     </div>
+                    <label id="planoSaude" class="form-label cadastro-label">Foto do Atleta:</label>
+                    <input type="file"  id="nome" class="form-control cadastro-input" name="image"  required>
 
                 <button type="submit" class="botao">Enviar</button>
             </div>

@@ -55,68 +55,47 @@ def cadastrar_atleta(request, modalidade_id):
     }
 
     if request.method == "POST":
-        sub = get_object_or_404(SubDivisao, pk = request.POST.get('subdivisao'))
         modalidade = get_object_or_404(Modalidade, pk = modalidade_id)
-        nome = request.POST['nome']
-        apelido = request.POST['apelido']
-        posicao = get_object_or_404(Posicao, pk=request.POST['posicao'])
+        nome = request.POST['nome'].strip()
+        apelido = request.POST['apelido'].strip()
+        if apelido == "":
+            nome_s = nome.split(" ")
+            apelido =nome_s[0]  
         data_nacimento = request.POST['data_nacimento']
-        rg = request.POST['rg']
-        cpf = request.POST['cpf']
-        perna_dominante = request.POST['perna_dominante']
-        naturalidade_uf = request.POST['naturalidade_uf']
-        cidade = request.POST['cidade']
-        endereco = request.POST['endereco']
-        numero_casa = request.POST['numero_casa']
-        bairro = request.POST['bairro']
-        cep = request.POST['cep']
-        telefone = request.POST['telefone']
-        whatsapp = request.POST['whatsapp']
-        whatsapp2 = request.POST['whatsapp2']
-        nome_pai = request.POST['nome_pai']
-        nome_mae = request.POST['nome_mae']
-        telefone_responsavel = request.POST['telefone_responsavel']
-        telefone_responsavel2 = request.POST['telefone_responsavel2']
-        peso = request.POST['peso']
-        altura = request.POST['altura']
+        rg = request.POST['rg'].strip()
+        if not rg.isdigit():
+            messages.error(request, f'RG invalida, porfavor coloque apenas numeros no rg')
+            redirect("cadastrar_atleta", modalidade_id)
+        cpf = request.POST['cpf'].strip()
+        if not validar_documentos(cpf):
+            messages.error(request, f'CPF invalido!')
+            redirect("cadastrar_atleta", modalidade_id)
+        naturalidade_uf = request.POST['naturalidade_uf'].strip()
+        cidade = request.POST['cidade'].strip()
+        bairro = request.POST['bairro'].strip()
+        endereco = request.POST['endereco'].strip()
+        numero_casa = request.POST['numero_casa'].strip()
+        cep = request.POST['cep'].strip()
+        telefone = request.POST['telefone'].strip()
+        whatsapp = request.POST['whatsapp'].strip()
+        telefone_responsavel = request.POST['telefone_responsavel'].strip()
+        telefone_responsavel2 = request.POST['telefone_responsavel2'].strip()
+        if telefone_responsavel2 == "":
+            telefone_responsavel2 = telefone_responsavel
+        nome_pai = request.POST['nome_pai'].strip()
+        if nome_pai == "":
+            nome_pai = "Não informado"
+        nome_mae = request.POST['nome_mae'].strip()
+        if nome_mae == "":
+            nome_mae = "Não informado"
+        peso = request.POST['peso'].strip()
+        altura = request.POST['altura'].strip()
+        perna_dominante = request.POST['perna_dominante'].strip()
+        nivel_escolar= request.POST.get('nivel_escolar').strip()
+        alergia = request.POST['alergia'].strip()
+        plano_saude = request.POST.get('plano_saude').strip()
+        posicao = get_object_or_404(Posicao, pk=request.POST['posicao'])
         image = request.FILES['image']
-
-        if 'semalergia' in request.POST:
-            alergia = 'nulo'
-        if 'alergia' in request.POST:
-            alergia = request.POST['alergia'].lstrip()
-            if valida_campo_vazio(alergia):
-                messages.error(request, 'O caractere espaço não e considerado no começo do campo alergia. marque Não tenho alergia para caso ele não exista')
-                return redirect('cadastrodeAtletas')
-        
-        # validações para informações sobre o plamo de saude
-        if 'semPlanoSaude' in request.POST:
-            plano_saude = 'nulo'
-        
-        if 'plano_saude' in request.POST:
-            plano_saude = request.POST['plano_saude'].lstrip()
-            if valida_campo_vazio(plano_saude):
-                messages.error(request, 'O caractere espaço não e considerado no começo do campo plano de saude. marque Não tenho plano de saúde para caso ele não existir')
-                return redirect('cadastrodeAtletas')
-        
-        # validações para informações sobre escolaridade
-        if 'sem_escolaridade' in request.POST:
-            matricula_escolar = 'nulo'
-            serie = 'nulo'
-            nivel_escolar='nulo'
-            
-        if 'matricula_escolar' and 'serie' and 'nivel_escolar' in request.POST:
-            matricula_escolar = request.POST['matricula_escolar'].lstrip()
-            serie = request.POST['serie'].lstrip()
-            nivel_escolar =  request.POST['nivel_escolar']
-            campos = [request.POST['matricula_escolar'], request.POST['serie']]
-            nomes = ['matricula escolar','serie' ]
-            iterador = -1
-            for campo in campos:
-                iterador = iterador+1
-                if valida_campo_vazio(campo):
-                    messages.error(request, f'O caractere espaço não e considerado no começo do campo {nomes[iterador]} ou marque sem escolaridade')
-                    return redirect('cadastrodeAtletas')
 
         # validações para indentificadores (rg, cpf)
         if Atleta.objects.filter(rg = rg).exists():
@@ -127,27 +106,15 @@ def cadastrar_atleta(request, modalidade_id):
             messages.error(request, 'Um atleta com esse CPF já foi cadastrado')
             return redirect('cadastrodeAtletas')
         
-        campos = [request.POST['nome'], request.POST['apelido'], request.POST['naturalidade_uf'], request.POST['cidade'], 
-        request.POST['endereco'],request.POST['cpf'], request.POST['cep'],request.POST['nome_pai'],request.POST['nome_mae'],
-        request.POST['bairro'],]
-        nomes = ['nome', 'apelido', 'naturalidade','cidade','endereco','CPF', 'CEP','nome do pai','nome da mãe','bairro' ]
-        iterador = -1
-        for campo in campos:
-            iterador = iterador+1
-            if valida_campo_vazio(campo):
-                messages.error(request, f'preencha os campos coretamente, o caractere espaço não e considerado no começo do campo {nomes[iterador]}')
-                return redirect('cadastrodeAtletas')
-        
         atleta = Atleta.objects.create(
             modalidade = modalidade,
             posicao = posicao,
             nome = nome,
             apelido = apelido,
             data_nascimento = data_nacimento,
+            rg = rg,
             cpf = cpf,
             perna_dominante = perna_dominante,
-            matricula_escolar = matricula_escolar,
-            serie = serie,
             nivel_escolar = nivel_escolar,
             naturalidade_uf= naturalidade_uf,
             cidade = cidade,
@@ -157,7 +124,6 @@ def cadastrar_atleta(request, modalidade_id):
             cep = cep,
             telefone = telefone,
             whatsapp = whatsapp,
-            whatsapp2 = whatsapp2,
             nome_pai = nome_pai,
             nome_mae = nome_mae,
             telefone_responsavel = telefone_responsavel,
