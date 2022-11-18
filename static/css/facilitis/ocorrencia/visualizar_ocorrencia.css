@@ -1,0 +1,139 @@
+/* CSS DO HTML */
+html,body{
+    width: 100%;
+}
+
+/* CSS DO BODY */
+body{
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat';
+}
+h1{
+    color: white;
+}
+
+/* CSS OCORRENCIA */
+.ocorrencias{
+    margin-top: 100px;
+    width: 70%;
+    padding: 0 0 30px 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detalhes{
+    width: 75%;
+    border: 2px solid rgb(206, 206, 206);
+    padding: 20px 10px;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.detalhes>div{
+    margin-top: 10px;
+}
+
+
+.detalhes>div:first-child{
+    display: flex;
+    width: 90%;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.detalhes>div:nth-child(4){
+    width: 90%;
+    align-self: center;
+}
+
+.detalhes>div:nth-child(2), .detalhes>div:nth-child(3){
+    width: 90%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detalhes>div:first-child>div, .detalhes>div:nth-child(2)>div, .detalhes>div:nth-child(3)>div{
+    display: flex;
+}
+
+.detalhes>div>div>p:nth-child(2){
+    margin-left: 10px;
+}
+
+/* CSS DO TITULO */
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.titulo h2{
+    text-align: center;
+    font-size: 25px;
+}
+
+.titulo hr{
+    width: 20%;
+    margin: 0 20px;
+    border-width: 2px;
+}
+
+/* CSS DOS BOTÕES*/
+.botao{
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 20px;
+    margin: 20px 10px 0 10px;
+    transition: 0.5s all;
+}
+
+.botao:hover{
+    transform: scale(1.1);
+}
+
+.botao-editar{
+    background-color: #064597;
+}
+
+.botao-pendente{
+    background-color: red;
+}
+
+.botao-processo{
+    background-color: orangered;
+}
+
+.botao-concluido{
+    background-color: green;
+}
+
+@media(max-width:1250px){
+    .detalhes>div{
+        flex-wrap: wrap;
+    }
+
+}
+
+@media(max-width:768px){
+   .botoes-ocorrencia{
+    flex-wrap: wrap;
+    width: 75%;
+    align-self: center;
+   }
+
+   .botao{
+    width: 100%;
+   }
+}

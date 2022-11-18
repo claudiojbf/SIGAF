@@ -16,7 +16,7 @@
                     <img src="{{atleta.foto_atleta.url}}" alt="">
                 </div>
                 <div class="botao-div">
-                    <a href=""><button class="btn botao botao-editar">Editar</button></a>
+                    <a href="{% url 'editar_atleta' atleta.id atleta.modalidade.id %}"><button class="btn botao botao-editar">Editar</button></a>
     
                     <!-- Button chama modal -->
                     <button type="button" class="btn botao botao-excluir" data-bs-toggle="modal" data-bs-target="#modal">
@@ -107,10 +107,6 @@
                     <div>
                         <p class="atleta-info-titulo">Posição:</p>
                         <p class="atleta-info-conteudo">{{atleta.posicao.posicao}}</p>
-                    </div>
-                    <div>
-                        <p class="atleta-info-titulo">Idade:</p>
-                        <p class="atleta-info-conteudo">{{atleta.idade}}</p>
                     </div>
                     <div>
                         <p class="atleta-info-titulo">Peso:</p>

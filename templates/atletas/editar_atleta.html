@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Cadastro de Atletas - CEFAT{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/atletas/cadastro_atletas.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    <section>
+        <h1>Cadastro de atletas</h1>
+    </section>
+    <section class="cadastro">
+        <form class="formulario" action="{% url 'editar_atleta' atleta.id atleta.modalidade.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}   
+            {% include 'partials/_alert.html' %}
+            <div class="titulo">
+                <hr>
+                <h2>Informações Pessoais</h2>
+                <hr>
+            </div>
+            <div>
+                <label for="nome" class="form-label cadastro-label">Nome Completo*</label>
+                <input id="nome" class="form-control cadastro-input" name="nome" value="{{atleta.nome}}" type="text" required>
+
+                <label for="apelido" class="form-label cadastro-label">Apelido</label>
+                <input id="apelido" class="form-control cadastro-input" name="apelido" value="{{atleta.apelido}}" type="text" >
+
+                <label for="cidade" class="form-label cadastro-label">Cidade*</label>
+                <input id="cidade" class="form-control cadastro-input" name="cidade" value="{{atleta.cidade}}" type="text" required placeholder="Ex: Fortaleza">
+
+                <label for="bairro" class="form-label cadastro-label">Bairro*</label>
+                <input id="bairro" class="form-control cadastro-input" name="bairro" value="{{atleta.bairro}}" type="text" required
+                    placeholder="Ex: Bom Jardim">
+
+                <label for="endereco" class="form-label cadastro-label">Endereço*</label>
+                <input id="endereco" class="form-control cadastro-input" name="endereco" value="{{atleta.endereco}}" type="text" required>
+
+                <label for="numeroCasa" class="form-label cadastro-label">N° da casa*</label>
+                <input id="numeroCasa" class="form-control cadastro-input" name="numero_casa" value="{{atleta.numero_da_casa}}" type="number" required>
+
+                <label for="cep" class="form-label cadastro-label">CEP*</label>
+                <input id="cep" class="form-control cadastro-input" name="cep" value="{{atleta.cep}}" placeholder="Ex: 65805000" required maxlength="8"
+                pattern="\d{8}"
+                title="O cep deve conter apenas numeros."   
+                required>
+
+                <label for="telefone" class="form-label cadastro-label">Telefone para contato*</label>
+                <input id="telefone" class="form-control cadastro-input" value="{{atleta.telefone}}" placeholder="88944445555" name="telefone" type="text"
+                pattern="\d{11}"
+                title="O telefone deve conter apenas digitos deve conter apenas numeros." 
+                required>
+
+                <label for="whatsapp" class="form-label cadastro-label">N° whatsapp*</label>
+                <input id="whatsapp" class="form-control cadastro-input" value="{{atleta.whatsapp}}" name = "whatsapp" type="text" required
+                placeholder="88944445555"
+                pattern="\d{11}"
+                title="O telefone deve conter apenas digitos deve conter apenas numeros." >
+
+                <div class="input-duplo">
+                    <div>
+                        <label for="TelefoneObrigatorio" class="form-label cadastro-label">Telefone
+                            responsável(obrigatório)</label>
+                        <input id="TelefoneObrigatorio" class="form-control cadastro-input" value="{{atleta.telefone_responsavel}}" name="telefone_responsavel" type="text" required
+                        pattern="\d{11}"
+                        title="O telefone deve conter apenas digitos deve conter apenas numeros."     
+                        placeholder="88944445555">
+                    </div>
+                    <div>
+                        <label for="nome" class="form-label cadastro-label">Telefone responsável(opcional)</label>
+                        <input id="nome" class="form-control cadastro-input" value="{{atleta.telefone_responsavel2}}" type="number" name="telefone_responsavel2" value=""
+                        pattern="\d{11}"
+                        title="O telefone deve conter apenas digitos deve conter apenas numeros." 
+                        placeholder="88944445555">
+                    </div>
+                </div>
+                <div class="input-duplo">
+                    <div>
+                        <label for="nomePai" class="form-label cadastro-label">Nome do pai</label>
+                        <input id="nomePai" class="form-control cadastro-input" value="{{atleta.nome_pai}}" type="text" name="nome_pai" value="">
+                    </div>
+                    <div>
+                        <label for="nomeMae" class="form-label cadastro-label">Nome da mãe</label>
+                        <input id="nomeMae" class="form-control cadastro-input" value="{{atleta.nome_mae}}" type="text" name="nome_mae" value="" >
+                    </div>
+                </div>
+
+                <label for="altura" class="form-label cadastro-label">Altura</label>
+                <input id="altura" class="form-control cadastro-input" value="{{atleta.altura}}" type="number" name="altura"
+                pattern="\d{3}"
+                title="Digite apenas numeros." 
+                placeholder="EX:188"
+                required>
+
+                <label for="peso" class="form-label cadastro-label">Peso</label>
+                <input id="peso" class="form-control cadastro-input" value="{{atleta.peso}}" type="text" name="peso"
+                pattern="\d{5}"
+                title="Digite apenas numeros." 
+                placeholder="EX:08880"
+                required>
+
+                <div class="select">
+                    <label  class="form-label cadastro-label">Perna Dominante:</label>
+                    <select name="perna_dominante">
+                        <option value="D">Direita</option>
+                        <option value="E">Esquerda</option>
+                        <option value="A">Ambidestro</option>
+                    </select>
+                </div>
+
+                <div class="select">
+                    <label  class="form-label cadastro-label">Nivel de Escolaridade:</label>
+                    <select name="nivel_escolar">
+                        <option value="Ensino Fundamental">Ensino fundamental</option>
+                        <option value="Ensino Medio">Ensxino Médio</option>
+                        <option value="Ensino Superior">Ensino Superior</option>
+                        <option value="Sem Escolaridade">Não frequento nenhuma instituição escolar</option>
+                    </select>
+                </div>
+
+                <label id="planoSaude" class="form-label cadastro-label">Qual o seu plano de saúde?</label>
+                <input id="planoSaude" type="text" class="form-control" value="{{atleta.plano_saude}}" name="plano_saude" >
+
+                <label class="form-label cadastro-label">Você tem alguma alergia? Se sim, qual?</label>
+                <input id="alergia" type="text" class="form-control" name="alergia" value="{{atleta.alergia}}" placeholder="sua resposta">
+
+                    <div class="select">
+                        <select name="posicao">
+                            {% for posicao in posicoes%}   
+                                {% if posicao.posicao == atleta.posicao.posicao %}                      
+                                    <option value="{{posicao.id}}" selected>{{posicao.posicao}}</option>
+                                {% else %}
+                                    <option value="{{posicao.id}}">{{posicao.posicao}}</option>
+                                {%endif%}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                <button type="submit" class="botao">Enviar</button>
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

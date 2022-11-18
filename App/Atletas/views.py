@@ -161,3 +161,49 @@ def deletar_atleta(request, atleta_id):
     atleta.delete()
 
     return redirect('redirecionar')
+
+@login_required(login_url="login")
+def editar_atleta(request, atleta_id, modalidade_id):
+    usuario = request.user.id
+    usuario_i = get_object_or_404(Usuario, pk=usuario)
+    atleta = get_object_or_404(Atleta, pk=atleta_id)
+    data_banco = atleta.data_nascimento
+    data = str(data_banco).split(" ")
+    posicoes = Posicao.objects.filter(modalidade_id = modalidade_id)
+
+    dados = {
+        "usuario":usuario_i,
+        "atleta":atleta,
+        "data" : data[0],
+        "posicoes":posicoes
+    }
+
+    if request.method == "POST":
+        atleta.nome = request.POST['nome'].strip()
+        atleta.apelido = request.POST['apelido']
+        atleta.cidade = request.POST['cidade']
+        atleta.bairro = request.POST['bairro']
+        atleta.endereco = request.POST['endereco']
+        atleta.numero_da_casa = request.POST['numero_casa']
+        atleta.cep = request.POST['cep']
+        atleta.telefone = request.POST['telefone']
+        atleta.whatsapp = request.POST['whatsapp']
+        atleta.telefone_responsavel = request.POST['telefone_responsavel']
+        atleta.telefone_responsavel2 = request.POST['telefone_responsavel2']
+        atleta.nome_pai = request.POST['nome_pai']
+        atleta.nome_mae = request.POST['nome_mae']
+        atleta.altura = request.POST['altura']
+        atleta.peso = request.POST['peso']
+        atleta.perna_dominante = request.POST['perna_dominante']
+        atleta.nivel_escolar = request.POST['nivel_escolar']
+        atleta.plano_saude =request.POST['plano_saude']
+        atleta.alergia = request.POST['alergia']
+        posicao = request.POST['posicao']
+        posicao_i = get_object_or_404(Posicao, pk=posicao)
+        atleta.posicao = posicao_i
+        atleta.save()
+        
+        return redirect('visualizar_atleta', atleta.id)
+
+
+    return render(request, "atletas/editar_atleta.html", dados)

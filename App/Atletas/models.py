@@ -66,6 +66,8 @@ class Atleta(models.Model):
     plano_saude = models.CharField(max_length=100, blank=True, null=True)
     alergia = models.CharField(max_length=100, default="Nenhuma", null=True)
     foto_atleta = models.ImageField(upload_to='FotoAtleta', blank=True)
+    camisa = models.IntegerField(blank=True, null=True)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
