@@ -23,24 +23,25 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body modal-conteudo">
-                            <form action="">
+                            <form action="{% url 'listar_atletas' modalidade_i.id %}" method="POST">{% csrf_token %}
                                 <div>
-                                    <input type="radio" name="tudo" id="tudo" value="0">
+                                    <input type="radio" name="tudo" id="tudo" value="S">
                                     <label for="tudo">Todos</label>
                                 </div>
                                 {% for posicao in posicoes %}
                                 <div>
                                     <input type="radio" name="tudo" id="{{posicao.posicao}}" value="{{posicao.id}}">
-                                    <label for="{{posicao.posicao}}">{{posicao.posicao}}</label>
+                                    <label for="{{posicao.id}}">{{posicao.posicao}}</label>
                                 </div>
                                 {%endfor%}
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                          <button type="button" class="btn btn-primary">Filtrar</button>
+                          <button type="submit" class="btn btn-primary">Filtrar</button>
                         </div>
-                  </div>
+                    </form>
+                </div>
                 </div>
             </div>
         </section>
@@ -49,7 +50,7 @@
         <section class="gestor-atletas-atacante">
             <div class="gestor-atletas-container">
                 <div class="gestor-atletas-container-titulo">
-                    <h2>Jogadores</h2>
+                    <h2>{{filtro_posicao}}</h2>
                     <a href="{% url 'cadastrar_atleta' modalidade_i.id %}"><button>+</button></a>
                 </div>
                 <div class="slide-content slide-content-atacante">

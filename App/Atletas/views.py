@@ -36,8 +36,19 @@ def listar_atletas(request, modalidade_id):
         "modalidades":modalidades,
         "modalidade_i":modalidade_i,
         "posicoes":posicoes,
-        "atletas":atletas
+        "atletas":atletas,
+        "filtro_posicao" : "Jogadores"
     }
+
+    if request.method == "POST":
+        filtro = request.POST['tudo']
+        if filtro == "S":
+            dados['filtro_posicao'] = "Jogadores"
+        else:
+            dados["atletas"] = Atleta.objects.filter(modalidade_id = modalidade_id, posicao_id = filtro)  
+            p_i = get_object_or_404(Posicao, pk = filtro)
+            dados['filtro_posicao'] = p_i.posicao
+            
 
     return render(request, "atletas/listar_atletas.html", dados)
 
