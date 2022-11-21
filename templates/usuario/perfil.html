@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Perfil: {{usuario.usuario.first_name}} {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/usuario/perfil.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'partials/_menu.html' %}
+    <!-- <section>
+        <h1>Perfil</h1>
+    </section> -->
+    
+    <section class="perfil">
+      {% include 'partials/_alert.html'%}
+        <div class="perfil-img">
+            <img src="{{usuario.foto_de_perfil.url}}" alt="">
+        </div>
+
+        <div class="perfil-nome">
+            <h3 class="perfil-nome-h2">{{usuario.usuario.first_name}}</h3>
+        </div>
+
+        <!-- Informações do Perfil -->
+        <div class="perfil-info">
+            <div class="perfil-email">
+                <p class="perfil-info-titulo">Email:</p>
+                <p>{{usuario.usuario.email}}</p>
+            </div>
+                
+            <div class="perfil-telefone">
+                <p class="perfil-info-titulo">Telefone:</p>
+                <p>{{usuario.telefone}}</p>
+            </div>
+
+            <div class="perfil-setor">
+                <p class="perfil-info-titulo">Setor:</p>
+                <p>{{usuario.nivel_de_usuario.descricao_do_nivel}}</p>
+            </div>
+
+            <div class="perfil-nascimento">
+                <p class="perfil-info-titulo">Nascimento:</p>
+                <p>{{usuario.nascimento}}</p>
+            </div>
+        </div>
+
+        <div class="botao-modal-div">
+            <!-- Botão do modal -->
+            <button type="button" class="btn botao-alterar" data-bs-toggle="modal" data-bs-target="#modal-senha">Alterar Senha</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-senha" tabindex="-1" aria-labelledby="label-modal-senha" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h2 class="modal-title fs-5" id="label-modal-senha">Alterar Senha</h2>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="{% url 'alterar_senha' %}" method="POST">{% csrf_token %}
+                            <label for="senha-0">Digite sua antiga senha</label>
+                            <input id="senha-0" name="senha_antiga" type="password">
+
+                            <label for="senha-1">Digite sua nova senha</label>
+                            <input id="senha-1" name="senha_nova" type="password">
+
+                            <label for="senha-2">Confirme sua nova senha</label>
+                            <input id="senha-2" name="senha_nova2" type="password">                   
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn botao-fechar" data-bs-dismiss="modal">Fechar</button>
+                          <button type="submit" class="btn botao-editar">Salvar Alteração</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="botao-modal-div modal-foto-perfil">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn botao-alterar" data-bs-toggle="modal" data-bs-target="#modal-foto">Alterar foto de Perfil</button>
+  
+            <!-- Modal -->
+            <div class="modal fade" id="modal-foto" tabindex="-1" aria-labelledby="label-modal-foto" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="label-modal-foto">Alterar Foto de Perfil</h2>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="">
+                          <label for="foto">Alterar foto de perfil</label>
+                          <input type="file" name="" id="foto">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn botao-fechar" data-bs-dismiss="modal">Fechar</button>
+                      <button type="button" class="btn botao-editar">Salvar Alteração</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="botao-modal-div">
+            <button class="btn botao-alterar">Alterar Dados</button>
+        </div>
+    </section>
+
+{% endblock %}

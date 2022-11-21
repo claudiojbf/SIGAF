@@ -26,28 +26,28 @@
     color: white;
 }
 
-.perfil{
+.perfil1{
     display: flex;
     align-items: center;
 }
 
-.perfil-img img{
+.perfil-img1 img{
     width: 60px;
     height: 60px;
     border-radius: 50px;
     object-fit: cover;
 }
 
-.perfil p{
+.perfil1 p{
     margin: 0;
     color: white;
 }
 
-.perfil a{
+.perfil1 a{
     color: black;
 }
 
-.perfil-link, .sair-link{
+.perfil-link1, .sair-link{
     display: none;
 }
 
@@ -66,17 +66,17 @@
         flex-direction: column-reverse;
     }
 
-    .perfil{
+    .perfil1{
         flex-direction: column-reverse;
         align-items: center;
         margin-right: 140px;
     }
 
-    .perfil p{
+    .perfil1 p{
         margin-right: 15px;
     }
 
-    .perfil-link, .sair-link{
+    .perfil-link1, .sair-link{
         display: block;
     }
 

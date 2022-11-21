@@ -1,0 +1,120 @@
+/* CSS DO HTML */
+html,body{
+    width: 100%;
+}
+
+/* CSS DO BODY E OUTRAS TAGS */
+body{
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat';
+}
+h1{
+    color: white;
+}
+
+p{
+    margin: 0;
+}
+
+/* CSS PERFIL */
+.perfil{
+    width: 70%;
+    padding: 0 0 30px 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 90px;
+}
+
+/* CSS DA IMAGEM DE PERFIL */
+.perfil-img{
+    width: 300px;
+    height: 300px;
+    margin-top: 30px;
+}
+
+.perfil-img>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* CSS DO NOME*/
+.perfil-nome{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.perfil-nome-h2{
+    text-align: center;
+    font-size: 25px;
+}
+
+/* CSS DAS INFORMAÇÕES DO PERFIL */
+.perfil-info>div{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.perfil-info>div>p:first-child{
+    margin-right: 10px;
+}
+
+/* CSS DOS BOTÕES*/
+.botao-modal-div{
+    width: 50%;
+}
+
+.botao-alterar{
+    width: 100%;
+    background-color: #003D9B;
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 20px;
+}
+
+.botao-alterar:hover, .botao-alterar:focus{
+    background-color: #377add;
+    color: white;
+}
+.botao-editar{
+    background-color: #003D9B;
+    color: white;
+}
+
+.botao-editar:hover, .botao-editar:focus{
+    background-color: #377add;
+    color: white;
+}
+
+.botao-fechar{
+    background-color: #db0000;
+    color: white;
+}
+
+.botao-fechar:hover, .botao-fechar:focus{
+    background-color: #ff3737;
+    color: white;
+}
+
+/* CSS DO FORMULÁRIO */
+form{
+    display: flex;
+    flex-direction: column;
+}
+form>input{
+    margin-bottom: 15px;
+}

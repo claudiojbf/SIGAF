@@ -6,4 +6,6 @@ urlpatterns = [
     path('logout/', views.logout, name="logout"),
     path('redirecionar/', views.Redirecionar, name = "redirecionar"),
     path('cadastro_usuario/', views.cadastro_usuario, name="cadastro_usuario"),
+    path('perfil/', views.perfil, name="perfil"),
+    path('alterar_senha/', views.alterar_senha, name="alterar_senha")
 ]

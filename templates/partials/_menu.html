@@ -31,20 +31,20 @@
                         <li><a class="dropdown-item" href="#">item3</a></li>
                         </ul>
                     </li> -->
-                    <li class="nav-item perfil-link">
-                        <a class="nav-link" href="">Perfil</a>
+                    <li class="nav-item perfil-link1">
+                        <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
                     </li>
                     <li class="nav-item sair-link">
                         <a class="nav-link" href="{% url 'logout' %}">Sair</a>
                     </li>
                 </ul>
-                <div class="perfil">
+                <div class="perfil1">
                     <p>{{usuario.usuario.first_name}}</p>
                     <div class="dropstart dropdown2">
-                        <div class="container perfil-img">
+                        <div class="container perfil-img1">
                             <button class="navbar-brand perfil-button" data-bs-toggle="dropdown" aria-expanded="false"><img src="{{usuario.foto_de_perfil.url}}"></button>
                             <ul class="dropdown-menu drop">
-                              <li><a class="dropdown-item" href="">Perfil</a></li>
+                              <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
                               <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
                             </ul>
                         </div>

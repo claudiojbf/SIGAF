@@ -39,7 +39,7 @@ def Redirecionar(requets):
         return redirect("index_atleta")
 
 
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def cadastro_usuario(request):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
@@ -101,13 +101,36 @@ def cadastro_usuario(request):
                 return redirect('redirecionar')
     return render(request, "usuario/cadastro-de-usuario.html", dados)
 
-def cadastro(request):
-    nivel_de_usuario = NivelDeUsuario.objects.all()
+@login_required(login_url='login')
+def perfil(request):
     usuario = request.user.id
-    usuario_i = get_object_or_404(Usuario, pk = usuario)
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
 
     dados = {
-        "tipos_usuarios" : nivel_de_usuario,
-        "usuario" :usuario_i
+        "usuario" : usuario_i,
     }
-    return render(request, 'usuario/teste.html',dados)
+
+    return render(request, "usuario/perfil.html" ,dados)
+
+@login_required(login_url='login')
+def alterar_senha(request):
+    usuario = request.user.id
+    usuario_i = get_object_or_404(User, pk=usuario)
+    if request.method == "POST":
+        senha_antiga = request.POST['senha_antiga']
+        senha_nova = request.POST['senha_nova'].strip()
+        senha_nova2 = request.POST['senha_nova2'].strip()
+        print(senha_antiga, senha_nova, senha_nova2, usuario_i.check_password(senha_antiga))
+        if usuario_i.check_password(senha_antiga):
+            if senha_nova == senha_nova2 and len(senha_nova) > 4:
+                usuario_i.set_password(senha_nova)
+                usuario_i.save()
+                messages.success(request, "Senha Alterada com sucesso!")
+                return redirect("perfil")
+            else:
+                messages.error(request, "Verifique se você esta digitando a senha corretamente,a senha tem que ser maior que 4 digitos.")
+                return redirect("perfil")
+        else:
+            messages.error(request, "Senha antiga incorreta!")
+            return redirect("perfil")
+    return redirect("perfil")
