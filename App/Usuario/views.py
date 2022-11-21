@@ -149,3 +149,17 @@ def alterar_foto_perfil(request):
         usuario_i.save()
 
     return redirect("perfil")
+
+@login_required(login_url='login')
+def alterar_dados(request):
+    usuario = request.user.id
+    usuario_i = get_object_or_404(Usuario, usuario = usuario)
+    user_i = get_object_or_404(User, pk=usuario)
+    if request.method == "POST":
+        user_i.first_name = request.POST.get('nome')
+        user_i.email = request.POST.get('email')
+        user_i.save()
+        usuario_i.telefone = request.POST.get('telefone')
+        usuario_i.save()
+        return redirect("perfil")
+    return redirect("perfil")

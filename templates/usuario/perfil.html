@@ -102,8 +102,37 @@
             </div>
         </div>
         <div class="botao-modal-div">
-            <button class="btn botao-alterar">Alterar Dados</button>
+            <button type="button" class="btn botao-alterar" data-bs-toggle="modal" data-bs-target="#modal-dados">Alterar Dados</button>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-dados" tabindex="-1" aria-labelledby="label-modal-senha" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="label-modal-senha">Alterar Dados</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="{% url 'alterar_dados' %}" method="POST">{% csrf_token %}
+                      <label for="nome">Nome</label>
+                      <input id="nome" name="nome" value="{{usuario.usuario.first_name}}" type="text">
+
+                      <label for="email">Email</label>
+                      <input id="email" name="email" value="{{usuario.usuario.email}}" type="email">
+
+                      <label for="telefone">Telefone</label>
+                      <input id="telefone" name="telefone" value="{{usuario.telefone}}" type="text" 
+                      pattern="\d{11}">                   
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn botao-fechar" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn botao-editar">Salvar Alteração</button>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+  </div>
     </section>
 
 {% endblock %}

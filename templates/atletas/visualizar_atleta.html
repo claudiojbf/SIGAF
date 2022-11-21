@@ -17,6 +17,33 @@
                 </div>
                 <div class="botao-div">
                     <a href="{% url 'editar_atleta' atleta.id atleta.modalidade.id %}"><button class="btn botao botao-editar">Editar</button></a>
+
+                    <div class="botao-modal-div modal-foto-perfil">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn botao botao-editar" data-bs-toggle="modal" data-bs-target="#modal-foto">Alterar Foto do Atleta</button>
+              
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-foto" tabindex="-1" aria-labelledby="label-modal-foto" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                  <h2 class="modal-title fs-5" id="label-modal-foto">Alterar Foto do Atleta</h2>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form action="{%url 'alterar_foto_atleta' atleta.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                      <label for="foto">Alterar Foto do Atleta</label>
+                                      <input type="file" name="nova_foto_atleta" id="foto">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn botao-fechar" data-bs-dismiss="modal">Fechar</button>
+                                  <button type="submit" class="btn botao-editar">Salvar Alteração</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
     
                     <!-- Button chama modal -->
                     <button type="button" class="btn botao botao-excluir" data-bs-toggle="modal" data-bs-target="#modal">

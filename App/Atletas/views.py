@@ -221,3 +221,13 @@ def editar_atleta(request, atleta_id, modalidade_id):
 
 
     return render(request, "atletas/editar_atleta.html", dados)
+
+@login_required(login_url="login")
+def alterar_foto_atleta(request, atleta_id):
+    atleta = get_object_or_404(Atleta, pk=atleta_id)
+    if request.method == "POST":
+        os.remove(os.path.join(BASE_DIR, atleta.foto_atleta.path))
+        atleta.foto_atleta = request.FILES['nova_foto_atleta']
+        atleta.save()
+        return redirect('visualizar_atleta', atleta.id)
+    return redirect('visualizar_atleta', atleta.id)
