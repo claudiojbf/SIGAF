@@ -66,7 +66,7 @@ class Atleta(models.Model):
     plano_saude = models.CharField(max_length=100, blank=True, null=True)
     alergia = models.CharField(max_length=100, default="Nenhuma", null=True)
     foto_atleta = models.ImageField(upload_to='FotoAtleta', blank=True)
-    camisa = models.IntegerField(blank=True, null=True)
+    camisa = models.IntegerField(blank=True, null=True, default=0)
     status = models.BooleanField(default=True)
 
     def __str__(self):
@@ -81,6 +81,16 @@ class Atleta(models.Model):
     def idade(self):
         hoje = date.today()
         return hoje.year - self.data_nascimento.year - ((hoje.month, hoje.day) < (self.data_nascimento.month, self.data_nascimento.day))
+    def camisa_atual(self):
+        if self.camisa == 0:
+            return "Não possui"
+        else:
+            return self.camisa
+    def status_atual(self):
+        if self.status == True:
+            return "Disponivel"
+        else:
+            return "Indisponivel"
 
     class Meta:
         db_table = '"atletas"."atleta"'

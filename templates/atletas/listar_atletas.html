@@ -12,13 +12,76 @@
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
             </form>
             <button>Pesquisar</button>
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal">Filtrar</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Filtro</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-conteudo">
+                            <form action="">
+                                <div>
+                                    <input type="radio" name="tudo" id="tudo" value="0">
+                                    <label for="tudo">Todos</label>
+                                </div>
+                                {% for posicao in posicoes %}
+                                <div>
+                                    <input type="radio" name="tudo" id="{{posicao.posicao}}" value="{{posicao.id}}">
+                                    <label for="{{posicao.posicao}}">{{posicao.posicao}}</label>
+                                </div>
+                                {%endfor%}
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                          <button type="button" class="btn btn-primary">Filtrar</button>
+                        </div>
+                  </div>
+                </div>
+            </div>
         </section>
 
-        {% for modalidade in modalidades %}
-            {% if modalidade.id == modalidade_i.id %}
-                {% include 'atletas/jogador.html'%}
-            {% endif %}
-        {% endfor %}
+        <!-- ATACANTES -->
+        <section class="gestor-atletas-atacante">
+            <div class="gestor-atletas-container">
+                <div class="gestor-atletas-container-titulo">
+                    <h2>Jogadores</h2>
+                    <a href="{% url 'cadastrar_atleta' modalidade_i.id %}"><button>+</button></a>
+                </div>
+                <div class="slide-content slide-content-atacante">
+                    <div>
+                        {% for atleta in atletas %}
+                        <div class="card-atletas">
+                            <img class="gestor-atletas-img" src="{{atleta.foto_atleta.url}}">
+                            <div class="gestor-atletas-informaçao">
+                                <p class="gestor-atletas-informaçao-titulo">Nome Completo</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.nome}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo"> Idade</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.idade}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo"> Status</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.status_atual}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo">Naturalidade</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.naturalidade_uf}}</p>
+                                
+                                <p class="gestor-atletas-informaçao-titulo">Camisa</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.camisa_atual}}</p>
+                                <div class="gestor-atletas-informaçao-link">
+                                <p><a class="gestor-atletas-informaçao-conteudo" href="{% url 'visualizar_atleta' atleta.id %}">Veja Mais</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
 {% endblock %}
