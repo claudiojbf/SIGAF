@@ -2,6 +2,8 @@ from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages, auth
+import os
+from config.settings import BASE_DIR
 
 from django.contrib.auth.models import User
 from .models import *
@@ -133,4 +135,17 @@ def alterar_senha(request):
         else:
             messages.error(request, "Senha antiga incorreta!")
             return redirect("perfil")
+    return redirect("perfil")
+
+@login_required(login_url='login')
+def alterar_foto_perfil(request):
+    usuario = request.user.id
+    usuario_i = get_object_or_404(Usuario, usuario_id=usuario)
+
+    if request.method == "POST":
+        os.remove(os.path.join(BASE_DIR, usuario_i.foto_de_perfil.path))
+        usuario_i.foto_de_perfil = request.FILES['nova_foto_perfil']
+        print(request.FILES['nova_foto_perfil'])
+        usuario_i.save()
+
     return redirect("perfil")

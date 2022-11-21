@@ -88,15 +88,15 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form action="">
+                      <form action="{%url 'alterar_foto_perfil' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                           <label for="foto">Alterar foto de perfil</label>
-                          <input type="file" name="" id="foto">
-                      </form>
+                          <input type="file" name="nova_foto_perfil" id="foto">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn botao-fechar" data-bs-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn botao-editar">Salvar Alteração</button>
+                      <button type="submit" class="btn botao-editar">Salvar Alteração</button>
                     </div>
+                  </form>
                 </div>
               </div>
             </div>
