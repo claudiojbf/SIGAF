@@ -32,6 +32,19 @@ section:last-child{
 .gestor-pesquisa form{
     width: 75%;
     margin-right: 20px;
+    display: flex;
+}
+
+.button-form-pesquisa{
+    display: flex;
+    border: none;
+    border-radius: 50px;
+    background-color: #003D9B;
+    color: white;
+    padding: 10px 15px;
+    transition: 0.6s all;
+    margin-right: 10px;
+    margin-left: 20px;
 }
 
 .gestor-pesquisa form>input{

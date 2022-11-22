@@ -8,10 +8,12 @@
     {% include 'partials/_menu.html' %}
     <main>
         <section class="gestor-pesquisa">
-            <form action="#">
+            <form action="{% url 'listar_atletas' modalidade_i.id %}" method="POST">{% csrf_token %}
+                <input type="text" name="tudo" value="P" hidden>
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <button type="submit" class="button-form-pesquisa">Pesquisar</button>
             </form>
-            <button>Pesquisar</button>
+            
             <button data-bs-toggle="modal" data-bs-target="#exampleModal">Filtrar</button>
 
             <!-- Modal -->

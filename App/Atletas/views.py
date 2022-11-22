@@ -44,6 +44,8 @@ def listar_atletas(request, modalidade_id):
         filtro = request.POST['tudo']
         if filtro == "S":
             dados['filtro_posicao'] = "Jogadores"
+        elif filtro == "P":
+            dados["atletas"] = Atleta.objects.filter(nome__icontains=request.POST['pesquisa'])
         else:
             dados["atletas"] = Atleta.objects.filter(modalidade_id = modalidade_id, posicao_id = filtro)  
             p_i = get_object_or_404(Posicao, pk = filtro)
