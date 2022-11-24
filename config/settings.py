@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'App.Usuario',
     'App.Funcionarios',
     'App.Ocorrencias',
-    'App.Atletas'
+    'App.Atletas',
+    'App.Consultas'
 ]
 
 MIDDLEWARE = [
