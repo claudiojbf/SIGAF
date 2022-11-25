@@ -2,14 +2,46 @@
 {% load static %}
 {% block 'title' %} Pagina Inicil {% endblock %}
 {% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/atletas/index_atletas.css' %}">
 {% endblock %}
 {% block content %}
 {% include 'partials/_menu.html' %}
-    <div style="margin-top: 200px">
+    <!-- <div style="margin-top: 200px">
     {% for modalidade in modalidades %}
         <a href="{% url 'listar_atletas' modalidade.id %}"><button>{{modalidade.nome_da_modalidade}}</button></a>
     {% endfor %}
-    </div>
+    </div> -->
+    <main>
+        <!-- <section class="titulo">
+            <h1>Seleção de Categorias</h1>
+        </section> -->
+
+        <section class="tela-categoria">
+            <div class="card-categoria">
+                {% for modalidade in modalidades %}
+                <a href="{% url 'listar_atletas' modalidade.id %}">
+                <div class="item-categoria">
+                    <div>
+                        <div></div>
+                        <img src="{{modalidade.imagem_modalidade.url}}" alt="">
+                    </div>
+                    <p>{{modalidade.nome_da_modalidade}}</p>
+                    <!-- <div class="link-categoria">
+                        <ul>
+                            <li><a href="">item</a></li>
+                            <li><a href="">item</a></li>
+                            <li><a href="">item</a></li>
+                            <li><a href="">item</a></li>
+                            <li><a href="">item</a></li>
+                            <li><a href="">item</a></li>
+                        </ul>
+                    </div> -->
+                </div>
+                </a>
+                {% endfor %}                     
+            </div>
+        </section>
+    </main>
 
     
 {% endblock %}

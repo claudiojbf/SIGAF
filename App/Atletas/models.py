@@ -5,6 +5,7 @@ from datetime import date
 
 class Modalidade(models.Model):
     nome_da_modalidade = models.CharField(max_length=50)
+    imagem_modalidade = models.ImageField(upload_to="FotosModalidades",blank=True, null=True)
 
     def __str__(self):
         return self.nome_da_modalidade
