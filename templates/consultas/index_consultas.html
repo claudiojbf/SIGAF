@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/atletas/listar_atletas.css' %}">
+{% endblock %}
+{% block content %}   
+    {% include 'partials/_menu.html' %}
+    <main>
+        <section class="gestor-pesquisa">
+            <form action="{% url 'index_consultas' %}" method="POST">{% csrf_token %}
+                <input type="text" name="tudo" value="P" hidden>
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <button type="submit" class="button-form-pesquisa">Pesquisar</button>
+            </form>
+            
+            
+        </section>
+
+        <!-- ATACANTES -->
+        <section class="gestor-atletas-atacante">
+            <div class="gestor-atletas-container">
+                <div class="gestor-atletas-container-titulo">
+                    <h2>Jogadores</h2>
+                </div>
+                <div class="slide-content slide-content-atacante">
+                    <div>
+                        {% for atleta in atletas %}
+                        <div class="card-atletas">
+                            <img class="gestor-atletas-img" src="{{atleta.foto_atleta.url}}">
+                            <div class="gestor-atletas-informaçao">
+                                <p class="gestor-atletas-informaçao-titulo">Nome Completo</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.nome}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo"> Idade</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.idade}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo"> Status</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.status_atual}}</p>
+
+                                <p class="gestor-atletas-informaçao-titulo">Naturalidade</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.naturalidade_uf}}</p>
+                                
+                                <p class="gestor-atletas-informaçao-titulo">Camisa</p>
+                                <p class="gestor-atletas-informaçao-conteudo">{{atleta.camisa_atual}}</p>
+                                <div class="gestor-atletas-informaçao-link">
+                                <p><a class="gestor-atletas-informaçao-conteudo" href="{% url 'visualizar_atleta_consulta' atleta.id %}">Veja Mais</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

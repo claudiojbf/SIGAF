@@ -39,6 +39,8 @@ def Redirecionar(requets):
         return redirect("index_facilitis")
     elif nivel_de_usuario.nivel_de_usuario.sigla == "GES":
         return redirect("index_atleta")
+    elif nivel_de_usuario.nivel_de_usuario.sigla == "PRF":
+        return redirect("index_consultas")
 
 
 @login_required(login_url='login')
