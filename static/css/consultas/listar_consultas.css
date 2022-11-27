@@ -1,0 +1,95 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat';
+}
+
+h1{
+    color: white;
+    font-size: 2.5rem;
+    margin: 15px 0;
+}
+
+#lista-consulta {
+    width: 70%;
+    background-color: #fff;
+    margin-top: 100px;
+}
+
+#lista-consulta ul{
+    width: 80%;
+    margin: 0 auto;
+    padding: 55px 0 60px 0;
+}
+
+#lista-consulta li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 55px;
+    border-bottom: 1.5px solid black;
+}
+
+#lista-consulta li:last-child{
+    margin: 0;
+}
+
+#lista-consulta li p {
+    margin: auto 0;
+    color: rgb(51, 51, 51);
+    padding: 3px 0;
+}
+
+#lista-consulta li button {
+    background-color: #003D9B;
+    border: none;
+    padding: 6px 10px;
+    font-size: 13px;
+    margin-left: 20px;
+}
+
+#lista-consulta li button:hover {
+    transform: scale(1.1);
+    transition: .3s;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 900px){
+    h1{
+        font-size: 2rem;
+    }
+    #lista-consulta li {
+        align-items: flex-end;
+    }
+    #lista-consulta li p {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    h1{
+        font-size: 1.6rem;
+    }
+    #lista-consulta {
+        width: 100%;
+    }
+    #lista-consulta li button {
+        font-size: 11px;
+        margin-left: 12px;
+    }
+}
+
+.botao {
+    margin: 10px;
+    height: 50px;
+}

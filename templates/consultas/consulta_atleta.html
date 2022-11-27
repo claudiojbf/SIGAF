@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/Consultas/consulta_atleta.css' %}">
+{% endblock %}
+{% block content %}   
+    {% include 'partials/_menu.html' %}
+    <section class="funcionarios-container">
+        <div class="funcionarios-card">
+            <div>
+                <img src="{{consulta.atleta.foto_atleta.url}}" alt="">
+            </div>
+            <div class="funcionarios-card-info">
+                <p>{{consulta.atleta.nome}}</p>
+                <p>Idade: {{consulta.atleta.idade}}</p>
+                <p>Peso: {{consulta.atleta.peso_tratado}}</p>
+                <p>Altura: {{consulta.atleta.altura_tratada}}</p>
+            </div>
+        </div>
+    </section>
+    <section id="consulta-atleta">
+        <div class="caixa">
+            <ul>
+                <li>
+                    <table class="table container">
+                        <thead>
+                            <tr>
+                                <th class="titulo">
+                                    <h2>Entrada</h2>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#entrada">
+                                        <h3>+</h3>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="table container">
+                        <thead>
+                            <tr>
+                                <th class="titulo">
+                                    <h2>Em tratamento</h2>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#tratamento">
+                                        <h3>+</h3>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="img-regiao">
+                                    <p>Exemplo:</p>
+                                    <a href="consulta-img.html"><button type="button" class="btn btn-primary">imagem</button></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="table container">
+                        <thead>
+                            <tr>
+                                <th class="titulo">
+                                    <h2>Saída</h2>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#saida">
+                                        <h3>+</h3>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="table container">
+                        <thead>
+                            <tr>
+                                <th class="titulo">
+                                    <h2>Manutenção</h2>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#manutencao">
+                                        <h3>+</h3>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Exemplo:</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+            <div class="modal fade" id="entrada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Entrada</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Estrutura Lesionada</option>
+                                <option value="1">Óssea</option>
+                                <option value="2">Muscular</option>
+                                <option value="3">Ligamentar</option>
+                                <option value="4">Articular</option>
+                            </select>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Região do corpo</option>
+                                <option value="1">Braço</option>
+                                <option value="2">Perna</option>
+                                <option value="3">Tronco</option>
+                                <option value="4">Cabeça</option>
+                                <option value="5">outro</option>
+                            </select>
+                            <div class="observacao">
+                                <p>Observação</p>
+                                <textarea cols="30" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                            <button type="button" class="btn btn-primary">enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="tratamento" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Em tratamento</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Qual o tipo do exame?</option>
+                                <option value="1">Radiografia(raio-x)</option>
+                                <option value="2">Ultrassonografia(US)</option>
+                                <option value="3">Ressonância magnética(RMN)</option>
+                            </select>
+                            <div class="observacao">
+                                <p>Observação</p>
+                                <textarea cols="30" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                            <button type="button" class="btn btn-primary">enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="saida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Saída</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="observacao">
+                                <p>Observação</p>
+                                <textarea cols="30" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                            <button type="button" class="btn btn-primary">enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="manutencao" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Manutenção</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Qual o tipo de tratamento</option>
+                                <option value="1">Recovery</option>
+                                <option value="2">Analgesia</option>
+                                <option value="3">Terap. Manul.(osteopatia, manipulação)</option>
+                            </select>
+                            <div class="observacao">
+                                <p>Observação</p>
+                                <textarea cols="30" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                            <button type="button" class="btn btn-primary">enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+{% endblock %}

@@ -16,7 +16,7 @@
                     <img src="{{atleta.foto_atleta.url}}" alt="">
                 </div>
                 <div class="botao-div">
-                    <a href=""><button class="btn botao botao-editar">Consultas</button></a>
+                    <a href="{% url 'listar_consultas' atleta.id %}"><button class="btn botao botao-editar">Consultas</button></a>
                 </div>
             </div>
             <div class="atleta-info-container">

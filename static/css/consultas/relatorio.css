@@ -1,0 +1,132 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 15px 0;
+}
+
+#relatorio {
+    width: 70%;
+    background-color: #fff;
+}
+
+#relatorio h3 {
+    font-size: 16px;
+    font-weight: 100;
+    margin: 0;
+}
+
+#relatorio .caixa {
+    padding: 25px;
+}
+
+/* PSEUDO HEADER */
+#relatorio .pseudo-header {
+    width: 100%;
+    border-bottom: 1px solid rgb(181, 181, 181);
+}
+
+#relatorio .pseudo-header .datas {
+    display: flex;
+    align-items: flex-end;
+    width: 40%;
+}
+
+#relatorio .pseudo-header .datas .mb-3 {
+    margin-right: 23px;
+}
+
+#relatorio .pseudo-header .datas button {
+    padding: 5px 8px;
+    font-size: 15px;
+}
+
+/* PSEUDO MAIN */
+#relatorio .pseudo-main {
+    margin-top: 50px;
+}
+
+#relatorio .pseudo-main h2 {
+    font-size: 23px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#relatorio .pseudo-main .tabelas {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 40px;
+}
+
+#relatorio .pseudo-main table {
+    border: 1px solid black;
+    margin: 0;
+    font-size: 14.5px;
+}
+
+#relatorio .pseudo-main table .titulo-tabela {
+    background-color: rgb(70, 70, 70);
+    color: white;
+    text-align: center;
+}
+
+#relatorio .pseudo-main table .colunaInicial {
+    width: 70%;
+}
+
+@media screen and (max-width: 1150px) {
+    #relatorio {
+        width: 80%;
+    }
+
+    #relatorio .pseudo-main .tabelas {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #relatorio .pseudo-header .datas{
+        display: block;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #relatorio {
+        width: 100%;
+    }
+
+    #relatorio .pseudo-main h2 {
+        font-size: 20px;
+    }
+
+    #relatorio .pseudo-main .tabelas {
+        display: block;
+        width: 65%;
+    }
+
+    #relatorio .pseudo-main .tabelas div {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+}

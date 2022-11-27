@@ -1,0 +1,166 @@
+* {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#consulta-atleta {
+    width: 70%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#consulta-atleta .caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+#consulta-atleta .caixa ul{
+        margin-top: 90px;
+        padding: 0;
+        width: 100%;
+}
+
+#consulta-atleta .caixa ul li{
+    margin-bottom: 60px;
+}
+
+#consulta-atleta table .titulo .btn-primary{
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#consulta-atleta table .titulo h3{
+    margin: 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#consulta-atleta .caixa table h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+#consulta-atleta .caixa table button{
+    background-color: #0a55c5;
+    border: none;
+}
+
+#consulta-atleta .caixa table tbody p{
+    margin: 0;
+}
+
+#consulta-atleta .caixa table tbody td {
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(95, 95, 95);
+}
+
+#consulta-atleta ul table tbody .img-regiao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#consulta-atleta ul table tbody .img-regiao button{
+    padding: 5px;
+    font-size: 12px;
+}
+
+#consulta-atleta .caixa table .titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(50, 50, 50);
+    border-radius: 10px;
+    color: white;
+    padding: 4px 15px;
+}
+
+/* AREA DOS MODAIS */
+#consulta-atleta .modal-body select {
+    margin-bottom: 20px;
+}
+
+#consulta-atleta .modal-body textarea {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+#consulta-atleta .modal-body p {
+    margin-bottom: 5px;
+}
+
+#consulta-atleta .modal .modal-footer .btn-primary {
+    background-color: #003D9B;
+    border: none;
+}
+
+.funcionarios-container{
+    background-color: #0a55c5;
+    padding: 30px 0;
+    width: 70%;
+    margin-top: 140px;
+}
+
+.funcionarios-container a{
+    text-decoration: none;
+}
+
+.funcionarios-card{
+    display: flex;
+    margin:0 20px 10px 20px;
+    background-color: white;
+}
+
+.funcionarios-card:hover{
+    cursor: pointer;
+}
+
+.funcionarios-card>div:first-child{
+    width: 10%;
+}
+
+.funcionarios-card-info{
+    width: 100%;
+}
+
+.funcionarios-card-info p {
+    color: white;
+    margin: 0 0 10px;
+}
+
+.funcionarios-card-info p:nth-child(2n), .funcionarios-card-info p:nth-child(3){
+    margin-left: 10px;
+    color: black;
+}
+
+.funcionarios-card-info>p:first-child{
+    background-color: #003D9B;
+    padding-left: 10px;
+}
+
+.funcionarios-card-info>p:last-child{
+    font-size: 14px;
+}
+
+.funcionarios-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
