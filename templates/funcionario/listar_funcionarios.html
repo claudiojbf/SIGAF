@@ -7,11 +7,67 @@
 {% block content %}
     {% include 'partials/_menu.html' %}
 
-    <div class = "listar_funcionario">
+    <!-- <div class = "listar_funcionario">
         <a href="{% url 'cadastro_funcionario' %}"><button>Cadastro</button></a>
         {% for funcionario in funcionarios %}
             <a href="{% url 'visualizar_funcionario' funcionario.id %}">{{funcionario.nome}}</a>
         {% endfor %}
-    </div>
+    </div> -->
+    <main>
+        <!-- <section class="titulo">
+            <h1>Funcionários</h1>
+        </section> -->
+
+        <section class="gestor-pesquisa">
+            <form action="#">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
+                <button type ="submit">Pesquisar</button>
+            </form>
+            
+            <a href="{% url 'cadastro_funcionario' %}"><button>Cadastro</button></a>
+
+            <!-- Modal
+            <div class="modal fade" id="modal-funcionario" tabindex="-1" aria-labelledby="modal-funcionarioLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                          <h2 class="modal-title fs-5" id="exampleModalLabel">Filtro</h2>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-conteudo">
+                            <form action="">
+                                <div>
+                                    <input type="checkbox" name="tudo" id="tudo" value="tudo">
+                                    <label for="tudo">Todos</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn botao" data-bs-dismiss="modal">Fechar</button>
+                          <button type="button" class="btn botao">Filtrar</button>
+                        </div>
+                  </div>
+                </div>
+            </div> -->
+        </section>
+
+        <section class="funcionarios-container">
+            {% for funcionario in funcionarios %}
+            <a href="{% url 'visualizar_funcionario' funcionario.id %}">
+            <div class="funcionarios-card">
+                <div>
+                    <img src="{{funcionario.foto_funcionario.url}}" alt="">
+                </div>
+                <div class="funcionarios-card-info">
+                    <p>{{funcionario.nome}}</p>
+                    <p>CPF: {{funcionario.cpf}}</p>
+                    <p>Email: {{funcionario.email}}</p>
+                    <p>Cargo: {{funcionario.funcao}}</p>
+                </div>
+            </div>
+            </a>
+            {% endfor %}
+        </section>
+    </main>
 
 {% endblock %}

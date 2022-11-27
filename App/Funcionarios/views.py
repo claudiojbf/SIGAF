@@ -77,7 +77,7 @@ def cadastro_funcionario(request):
 def listar_funcionarios(request):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
-    funcionarios = Funcionario.objects.all()
+    funcionarios = Funcionario.objects.all().order_by('nome')
 
     dados = {
         "usuario":usuario_i, 

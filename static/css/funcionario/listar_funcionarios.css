@@ -1,24 +1,163 @@
-/* CSS DO HTML */
-html,body{
-    width: 100%;
-}
-
-/* CSS DO BODY */
 body{
     background-color: #1e1e1e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     font-family:'Montserrat';
 }
 
-.listar_funcionario{
-    width: 70%;
-    padding: 0 0 30px 0;
-    background-color: white;
+main{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+}
+
+h1{
+    color: white;
+}
+
+section{
+    width: 80%;
+}
+
+section:first-child{
+    margin-top: 140px;
+}
+
+section:last-child{
+    margin-bottom: 70px;
+}
+
+.titulo{
+    text-align: center;
+}
+
+/*CSS DA PESQUISA */
+.gestor-pesquisa{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #b1b1b1;
+}
+.gestor-pesquisa form{
+    width: 75%;
+    margin-right: 20px;
+}
+
+.gestor-pesquisa form>input{
+    width: 80%;
+    border: 2px solid #003D9B;
+    border-radius: 50px;
+    padding: 8px 0;
+    padding-left: 15px;
+}
+
+.gestor-pesquisa form>button{
+    border: none;
+    border-radius: 50px;
+    background-color: #003D9B;
+    height: 40px;
+    color: white;
+    padding: 0 15px;
+    transition: 0.6s all;
+    margin-right: 10px;
+}
+
+.gestor-pesquisa form>button:hover{
+    background-color: #4871af;
+}
+
+.gestor-pesquisa button{
+    border: none;
+    border-radius: 50px;
+    background-color: #003D9B;
+    height: 40px;
+    color: white;
+    padding: 0 15px;
+    transition: 0.6s all;
+    margin-right: 10px;
+}
+
+.gestor-pesquisa button:hover{
+    background-color: #4871af;
+}
+
+/* CSS DO MODAL */
+.modal-conteudo form{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.modal-conteudo>form>div{
+   display: flex;
+}
+
+.modal-conteudo label{
+    margin-left: 5px;
+}
+
+.modal-conteudo input{
+    margin-left: 15px;
+}
+
+.botao{
+    border: none;
+    border-radius: 50px;
+    background-color: #003D9B;
+    color: white;
+    padding: 5px 15px;
+    transition: 0.6s all;
+    margin-right: 10px;
+}
+
+
+.funcionarios-container{
+    background-color: #b1b1b1;
+    padding: 30px 0;
+}
+
+.funcionarios-container a{
+    text-decoration: none;
+}
+
+.funcionarios-card{
+    display: flex;
+    margin:0 20px 10px 20px;
+    background-color: white;
+}
+
+.funcionarios-card:hover{
+    cursor: pointer;
+}
+
+.funcionarios-card>div:first-child{
+    width: 10%;
+}
+
+.funcionarios-card-info{
+    width: 100%;
+}
+
+.funcionarios-card-info p {
+    color: white;
+    margin: 0 0 10px;
+}
+
+.funcionarios-card-info p:nth-child(2n), .funcionarios-card-info p:nth-child(3){
+    margin-left: 10px;
+    color: black;
+}
+
+.funcionarios-card-info>p:first-child{
+    background-color: #003D9B;
+    padding-left: 10px;
+}
+
+.funcionarios-card-info>p:last-child{
+    font-size: 14px;
+}
+
+.funcionarios-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
