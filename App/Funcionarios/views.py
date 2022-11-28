@@ -84,6 +84,10 @@ def listar_funcionarios(request):
         "funcionarios":funcionarios
     }
 
+    if request.method == "POST":
+        pesquisa = request.POST['pesquisa']
+        dados["funcionarios"] = Funcionario.objects.filter(nome__icontains = pesquisa)
+
     return render(request, 'funcionario/listar_funcionarios.html', dados)
 
 @login_required(login_url="login")

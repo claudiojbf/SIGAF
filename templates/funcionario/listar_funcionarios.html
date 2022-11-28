@@ -19,7 +19,7 @@
         </section> -->
 
         <section class="gestor-pesquisa">
-            <form action="#">
+            <form action="{% url 'listar_funcionarios' %}" method="POST">{% csrf_token %}
                 <input type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar">
                 <button type ="submit">Pesquisar</button>
             </form>
