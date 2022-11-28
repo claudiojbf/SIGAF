@@ -28,35 +28,39 @@
                             <tr>
                                 <th class="titulo">
                                     <h2>Entrada</h2>
+                                    {% if entrada == "N" %}
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#entrada">
                                         <h3>+</h3>
                                     </button>
+                                    {% endif%}
                                 </th>
                             </tr>
                         </thead>
+                        {% if entrada != "N" %}
                         <tbody>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Data: {{entrada.criacao}} </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Estrutura Lesionada: {{entrada.estrutura_lesionada.estrutura_lesionada}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Parte do Corpo: {{entrada.regiao_corpo.parte_do_corpo}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Observação: {{entrada.observacao}}</p>
                                 </td>
                             </tr>
                         </tbody>
+                        {% endif %}
                     </table>
                 </li>
                 <li>
@@ -65,36 +69,62 @@
                             <tr>
                                 <th class="titulo">
                                     <h2>Em tratamento</h2>
+                                    {% if tratamento == "N" %}
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#tratamento">
                                         <h3>+</h3>
                                     </button>
+                                    {% endif %}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% if tratamento != "N" %}
+                            <tr>
+                                <td>
+                                    <p>Data: {{tratamento.criacao}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Observação: {{tratamento.justificativa}}</p>
+                                </td>
+                            </tr>
+                            {% if complemento == "N" %}
+                            <tr>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#complemento">
+                                        <h10>Exames Complementares</h10>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% if complemento != "N" %}
+                            <tr>
+                                <td>
+                                    <p>Data: {{complemento.criacao}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Tipo de Exame: {{complemento.exame_complementar.tipo_de_exame}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Observação: {{complemento.justificativa_complementares}}</p>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="img-regiao">
                                     <p>Exemplo:</p>
                                     <a href="consulta-img.html"><button type="button" class="btn btn-primary">imagem</button></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <p>Exemplo:</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Exemplo:</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Exemplo:</p>
-                                </td>
-                            </tr>
+                            {% endif %}
                         </tbody>
+                        {% endif %}
                     </table>
                 </li>
                 <li>
@@ -103,24 +133,28 @@
                             <tr>
                                 <th class="titulo">
                                     <h2>Saída</h2>
+                                    {% if saida == "N" %}
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#saida">
                                         <h3>+</h3>
                                     </button>
+                                    {% endif %}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% if saida != "N" %}
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Data:{{saida.criacao}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Exemplo:{{saida.justificativa}}</p>
                                 </td>
                             </tr>
+                            {% endif %}
                         </tbody>
                     </table>
                 </li>
@@ -130,34 +164,33 @@
                             <tr>
                                 <th class="titulo">
                                     <h2>Manutenção</h2>
+                                    {% if manutencao == "N" %}
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#manutencao">
                                         <h3>+</h3>
                                     </button>
+                                    {% endif %}
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% if manutencao != "N" %}
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Data: {{manutencao.criacao}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Tipo de Manutenção: {{manutencao.get_tipo_manutencao_display}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <p>Exemplo:</p>
+                                    <p>Observação: {{manutencao.justificativa}}</p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <p>Exemplo:</p>
-                                </td>
-                            </tr>
+                            {% endif %}
                         </tbody>
                     </table>
                 </li>
@@ -169,31 +202,30 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Entrada</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form method="POST" action="{% url 'criar_entrada' consulta.id %}">{% csrf_token %}
                         <div class="modal-body">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Estrutura Lesionada</option>
-                                <option value="1">Óssea</option>
-                                <option value="2">Muscular</option>
-                                <option value="3">Ligamentar</option>
-                                <option value="4">Articular</option>
+                            <label for="estrutura">Estrutura Lesionada</label>
+                            <select id="estrutura" class="form-select" name="estrutura" aria-label="Default select example">
+                                {% for estrutura in estruturas %}
+                                <option value="{{estrutura.id}}">{{estrutura.estrutura_lesionada}}</option>
+                                {% endfor %}
                             </select>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Região do corpo</option>
-                                <option value="1">Braço</option>
-                                <option value="2">Perna</option>
-                                <option value="3">Tronco</option>
-                                <option value="4">Cabeça</option>
-                                <option value="5">outro</option>
+                            <label for="parte">Parte do Corpo</label>
+                            <select id="parte" class="form-select" name="parte" aria-label="Default select example">
+                                {% for parte in partes %}
+                                <option value="{{parte.id}}">{{parte.parte_do_corpo}}</option>
+                                {% endfor %}
                             </select>
                             <div class="observacao">
                                 <p>Observação</p>
-                                <textarea cols="30" rows="7"></textarea>
+                                <textarea cols="30" name="observacao" rows="7"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-                            <button type="button" class="btn btn-primary">enviar</button>
+                            <button type="submit" class="btn btn-primary">enviar</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -206,21 +238,47 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Qual o tipo do exame?</option>
-                                <option value="1">Radiografia(raio-x)</option>
-                                <option value="2">Ultrassonografia(US)</option>
-                                <option value="3">Ressonância magnética(RMN)</option>
-                            </select>
+                            <form method="POST" action="{% url 'criar_tratamento' consulta.id %}">{% csrf_token %}
                             <div class="observacao">
                                 <p>Observação</p>
-                                <textarea cols="30" rows="7"></textarea>
+                                <textarea name="observacao" cols="30" rows="7"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-                            <button type="button" class="btn btn-primary">enviar</button>
+                            <button type="submit" class="btn btn-primary">enviar</button>
                         </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="complemento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Exame Complementar</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="POST" action="{% url 'criar_exame_complementar' consulta.id %}" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="modal-body">
+                            <label for="estrutura">Tipo de Exame</label>
+                            <select id="estrutura" class="form-select" name="exame" aria-label="Default select example">
+                                {% for exame in exames %}
+                                <option value="{{exame.id}}">{{exame.tipo_de_exame}}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="parte">Imagem do Exame</label>
+                            <input id ="parte" type="file" class="form-control cadastro-input" name="image_exame">
+                            <div class="observacao">
+                                <p>Observação</p>
+                                <textarea cols="30" name="observacao" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                            <button type="submit" class="btn btn-primary">enviar</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -231,16 +289,18 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Saída</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form action="{% url 'criar_saida' consulta.id %}" method="POST">{% csrf_token %}
                         <div class="modal-body">
                             <div class="observacao">
                                 <p>Observação</p>
-                                <textarea cols="30" rows="7"></textarea>
+                                <textarea cols="30" name="observacao" rows="7"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-                            <button type="button" class="btn btn-primary">enviar</button>
+                            <button type="submit" class="btn btn-primary">enviar</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -252,32 +312,30 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Manutenção</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <form method="POST" action="{% url 'criar_manutencao' consulta.id %}">{% csrf_token %}
                         <div class="modal-body">
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="tipo_manutencao" aria-label="Default select example">
                                 <option selected>Qual o tipo de tratamento</option>
-                                <option value="1">Recovery</option>
-                                <option value="2">Analgesia</option>
-                                <option value="3">Terap. Manul.(osteopatia, manipulação)</option>
+                                <option value="R">Recovery</option>
+                                <option value="A">Analgesia</option>
+                                <option value="O">Terap. Manul. (osteopatia)</option>
+                                <option value="M">Terap. Manul. (manipulação)</option>
                             </select>
                             <div class="observacao">
                                 <p>Observação</p>
-                                <textarea cols="30" rows="7"></textarea>
+                                <textarea cols="30" name="observacao" rows="7"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
-                            <button type="button" class="btn btn-primary">enviar</button>
+                            <button type="submit" class="btn btn-primary">enviar</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
+    
 {% endblock %}

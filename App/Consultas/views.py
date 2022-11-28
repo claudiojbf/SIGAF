@@ -40,7 +40,7 @@ def listar_consultas(request, atleta_id):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
     atleta = get_object_or_404(Atleta, pk = atleta_id)
-    consultas = Consulta.objects.filter(atleta_id = atleta)
+    consultas = Consulta.objects.filter(atleta_id = atleta).order_by('-criacao')
     
     dados = {
         "usuario":usuario_i,
@@ -63,12 +63,107 @@ def consulta_geral(request, consulta_id):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
     consultas = get_object_or_404(Consulta, pk = consulta_id)
-    entrada = Entrada.objects.get(consulta_id = consultas).exists()
-    print(entrada)
-
+    estruturas = EstruturaLesionada.objects.all()
+    partes = RegiaoDoCorpo.objects.all()
+    exame = ExamesComplementares.objects.all()
     dados = {
         "usuario":usuario_i,
         "consulta":consultas,
+        "estruturas": estruturas,
+        "partes":partes,
+        "exames":exame,
+        "entrada":"N",
+        "tratamento":"N",
+        "complemento":"N",
+        "saida":"N",
+        "manutencao":"N"
     }
-
+    if Entrada.objects.filter(consulta_id = consultas).exists():
+        dados["entrada"] = Entrada.objects.get(consulta_id = consultas)
+    if Tratamento.objects.filter(consulta_id = consultas).exists():
+        dados["tratamento"] = Tratamento.objects.get(consulta_id = consultas)
+    if ExameTratamento.objects.filter(consulta_id = consultas).exists():
+        dados["complemento"] = ExameTratamento.objects.get(consulta_id = consultas)
+    if Saida.objects.filter(consulta_id = consultas).exists():
+        dados["saida"] = Saida.objects.get(consulta_id = consultas)
+    if Manutencao.objects.filter(consulta_id = consultas).exists():
+        dados["manutencao"] = Manutencao.objects.get(consulta_id = consultas)
+    
     return render(request, 'consultas/consulta_atleta.html', dados)
+
+@login_required(login_url='login')
+def criar_entrada(request, consulta_id):
+    consultas = get_object_or_404(Consulta, pk = consulta_id)
+    if request.method == "POST":
+        estrutura = request.POST['estrutura']
+        estrutura_i = get_object_or_404(EstruturaLesionada, pk = estrutura)
+        parte = request.POST['parte']
+        parte_i = get_object_or_404(RegiaoDoCorpo, pk = parte)
+        observacao = request.POST['observacao']
+        entrada = Entrada.objects.create(
+            consulta = consultas, 
+            estrutura_lesionada = estrutura_i,
+            regiao_corpo = parte_i,
+            observacao = observacao
+            )
+        entrada.save()
+    return redirect("consulta_geral", consulta_id)
+
+@login_required(login_url='login')
+def criar_tratamento(request, consulta_id):
+    consultas = get_object_or_404(Consulta, pk = consulta_id)
+    if request.method == "POST":
+        observacao = request.POST['observacao']
+        tratamento = Tratamento.objects.create(
+            consulta = consultas,
+            justificativa = observacao
+        )
+        tratamento.save()
+
+    return redirect("consulta_geral", consulta_id)
+
+@login_required(login_url='login')
+def criar_exame_complementar(request, consulta_id):
+    consultas = get_object_or_404(Consulta, pk = consulta_id)
+    if request.method == "POST":
+        exame = get_object_or_404(ExamesComplementares, pk = request.POST['exame'])
+        imagem = request.FILES['image_exame']
+        observacao = request.POST['observacao']
+
+        complemento = ExameTratamento.objects.create(
+            consulta = consultas,
+            exame_complementar = exame,
+            imagem_exame = imagem,
+            justificativa_complementares = observacao
+        )
+        
+
+    return redirect("consulta_geral", consulta_id)
+
+@login_required(login_url='login')
+def criar_saida(request, consulta_id):
+    consultas = get_object_or_404(Consulta, pk = consulta_id)
+    if request.method == "POST":
+        observacao = request.POST['observacao']
+        saida = Saida.objects.create(
+            consulta = consultas,
+            justificativa = observacao
+        )
+        saida.save()
+
+    return redirect("consulta_geral", consulta_id)
+
+@login_required(login_url='login')
+def criar_manutencao(request, consulta_id):
+    consultas = get_object_or_404(Consulta, pk = consulta_id)
+    if request.method == "POST":
+        tipo_manutencao = request.POST['tipo_manutencao']
+        observacao = request.POST['observacao']
+        manutencao = Manutencao.objects.create(
+            consulta = consultas,
+            tipo_manutencao = tipo_manutencao,
+            justificativa = observacao
+        )
+        manutencao.save()
+
+    return redirect("consulta_geral", consulta_id)
