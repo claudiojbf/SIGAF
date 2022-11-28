@@ -118,8 +118,8 @@
                             </tr>
                             <tr>
                                 <td class="img-regiao">
-                                    <p>Exemplo:</p>
-                                    <a href="consulta-img.html"><button type="button" class="btn btn-primary">imagem</button></a>
+                                    <p>Imagem do Exame:</p>
+                                    <a href="{% url 'visualizar_imagem_consulta' consulta.id %}"><button type="button" class="btn btn-primary">imagem</button></a>
                                 </td>
                             </tr>
                             {% endif %}

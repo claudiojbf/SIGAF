@@ -80,15 +80,24 @@ def consulta_geral(request, consulta_id):
     }
     if Entrada.objects.filter(consulta_id = consultas).exists():
         dados["entrada"] = Entrada.objects.get(consulta_id = consultas)
+    else:
+        dados["entrada"] = "N"
     if Tratamento.objects.filter(consulta_id = consultas).exists():
         dados["tratamento"] = Tratamento.objects.get(consulta_id = consultas)
+    else:
+        dados["tratamento"] = "N"
     if ExameTratamento.objects.filter(consulta_id = consultas).exists():
         dados["complemento"] = ExameTratamento.objects.get(consulta_id = consultas)
+    else:
+        dados["complemento"] = "N"
     if Saida.objects.filter(consulta_id = consultas).exists():
         dados["saida"] = Saida.objects.get(consulta_id = consultas)
+    else:
+        dados["saida"] = "N"
     if Manutencao.objects.filter(consulta_id = consultas).exists():
         dados["manutencao"] = Manutencao.objects.get(consulta_id = consultas)
-    
+    else:
+        dados["manutencao"] = "N"
     return render(request, 'consultas/consulta_atleta.html', dados)
 
 @login_required(login_url='login')
@@ -166,4 +175,23 @@ def criar_manutencao(request, consulta_id):
         )
         manutencao.save()
 
+    return redirect("consulta_geral", consulta_id)
+    
+@login_required(login_url='login')
+def visualizar_imagem(request, consulta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    consulta = Consulta.objects.get(pk=consulta_id)
+    exame = ExameTratamento.objects.get(consulta_id = consulta.id)
+
+    dados = {
+        "usuario":usuario_i,
+        "consulta":consulta,
+        "exame":exame
+    }
+
+    return render(request, 'consultas/consulta_img.html', dados)
+
+@login_required(login_url='login')
+def retornar_consulta(request, consulta_id):
     return redirect("consulta_geral", consulta_id)

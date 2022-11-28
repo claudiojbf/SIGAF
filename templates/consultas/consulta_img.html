@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/Consultas/consulta_img.css' %}">
+{% endblock %}
+{% block content %}   
+    {% include 'partials/_menu.html' %}
+    <section id="img-regiao">
+        <div class="botao_retorno">
+            <a href="{% url 'retornar_consulta' consulta.id %}"><button>Retornar</button></a> 
+        </div>
+        <div class="caixa">
+            <img src="{{exame.imagem_exame.url}}" class="img-fluid" alt="">
+        </div>
+    </section>
+{% endblock %}
