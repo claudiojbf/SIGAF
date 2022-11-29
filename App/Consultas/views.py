@@ -195,3 +195,52 @@ def visualizar_imagem(request, consulta_id):
 @login_required(login_url='login')
 def retornar_consulta(request, consulta_id):
     return redirect("consulta_geral", consulta_id)
+
+@login_required(login_url='login')
+def relatorio_consulta(request, atleta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    atleta = Atleta.objects.get(pk=atleta_id)
+    consultas = Consulta.objects.filter(atleta_id = atleta)
+    count_examen_complementares = 0
+    e_lesionadas = EstruturaLesionada.objects.all()
+    count_lesionadas = {}
+    p_corpos = RegiaoDoCorpo.objects.all()
+    count_parte_corpo = {}
+    for consulta in consultas:
+        if ExameTratamento.objects.filter(consulta_id = consulta).exists():
+            count_examen_complementares += 1
+    for e_lesionada in e_lesionadas:
+        count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).count()    
+        count_lesionadas[e_lesionada.estrutura_lesionada] = count
+    for p_corpo in p_corpos:
+        count = Entrada.objects.filter(regiao_corpo_id = p_corpo).count
+        count_parte_corpo[p_corpo.parte_do_corpo] = count
+
+    if request.method == "POST":
+        inicio = request.POST['inicio']
+        fim = request.POST['fim']
+        count_examen_complementares = 0
+        for consulta in consultas:
+            if ExameTratamento.objects.filter(consulta_id = consulta).filter(criacao__range = (inicio, fim)).exists():
+                count_examen_complementares += 1
+
+        for e_lesionada in e_lesionadas:
+            count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(criacao__range = (inicio, fim)).count()    
+            count_lesionadas[e_lesionada.estrutura_lesionada] = count
+        for p_corpo in p_corpos:
+            count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(criacao__range = (inicio, fim)).count
+            count_parte_corpo[p_corpo.parte_do_corpo] = count
+
+    
+        
+
+    dados = {
+        "usuario":usuario_i,
+        "atleta":atleta_id,
+        "ex_complementares" : count_examen_complementares,
+        "count_lesionadas": count_lesionadas,
+        "count_partes": count_parte_corpo
+    }
+
+    return render(request, 'consultas/relatorio_consulta.html',dados)

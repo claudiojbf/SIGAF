@@ -12,6 +12,8 @@
     <section id="lista-consulta">
         <a href="{% url 'criar_consulta' atleta %}"><button type="button"
             class="btn btn-primary btn-sm botao">Iniciar Consulta</button></a>
+        <a href="{% url 'relatorio_consulta' atleta %}"><button type="button"
+            class="btn btn-primary btn-sm botao">Relatorio</button></a>
         <ul class="lista">
             {% for consulta in consultas %}
             <li>
