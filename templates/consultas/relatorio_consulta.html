@@ -12,7 +12,7 @@
     <section id="relatorio">
         <div class="caixa">
             <div class="pseudo-header">
-                <form class="datas" method="POST" action="{% url 'relatorio_consulta' atleta %}">{% csrf_token %}
+                <form class="datas" method="POST" action="{% url 'relatorio_consulta' atleta.id %}">{% csrf_token %}
                     <div class="mb-3">
                         <label for="dataEntrada" class="form-label">Data de entrada</label>
                         <input type="date" class="form-control" name="inicio" id="dataEntrada">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="pseudo-main">
-                <h2>Mapeamento das lesões</h2>
+                <h2>{{atleta.nome}}</h2>
                 <div class="tabelas">
                     <div>
                         <table class="table table-bordered">
@@ -62,33 +62,23 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- <div>
+                    <div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="titulo-tabela">
-                                    <th colspan="2">Grau da lesão</th>
+                                    <th colspan="2">Manutencão</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for k,v in count_manutencoes.items %}
                                 <tr>
-                                    <td class="colunaInicial">exemplo</td>
-                                    <td>exemplo</td>
+                                    <td class="colunaInicial">{{k}}</td>
+                                    <td>{{v}}</td>
                                 </tr>
-                                <tr>
-                                    <td>exemplo</td>
-                                    <td>exemplo</td>
-                                </tr>
-                                <tr>
-                                    <td>exemplo</td>
-                                    <td>exemplo</td>
-                                </tr>
-                                <tr>
-                                    <td>exemplo</td>
-                                    <td>exemplo</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
-                    </div> -->
+                    </div>
                     <div>
                         <table class="table table-bordered">
                             <thead>

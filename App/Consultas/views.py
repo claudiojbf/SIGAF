@@ -207,23 +207,53 @@ def relatorio_consulta(request, atleta_id):
     count_lesionadas = {}
     p_corpos = RegiaoDoCorpo.objects.all()
     count_parte_corpo = {}
+    count_manutencao = {
+        "Recovery" : 0,
+        "Analgesia" : 0,
+        "Terapia Manual Osteopatia" : 0,
+        "Terapia Manual Manipulação" : 0
+    }
     for consulta in consultas:
         if ExameTratamento.objects.filter(consulta_id = consulta).exists():
             count_examen_complementares += 1
+        if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "R").exists():
+            count_manutencao["Recovery"] += 1
+        if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "A").exists():
+            count_manutencao["Analgesia"] += 1
+        if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "O").exists():
+            count_manutencao["Terapia Manual Osteopatia"] += 1
+        if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").exists():
+            count_manutencao["Terapia Manual Manipulação"] += 1
+        
     for e_lesionada in e_lesionadas:
         count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).count()    
         count_lesionadas[e_lesionada.estrutura_lesionada] = count
     for p_corpo in p_corpos:
         count = Entrada.objects.filter(regiao_corpo_id = p_corpo).count
         count_parte_corpo[p_corpo.parte_do_corpo] = count
+    
 
     if request.method == "POST":
         inicio = request.POST['inicio']
         fim = request.POST['fim']
         count_examen_complementares = 0
+        count_manutencao = {
+            "Recovery" : 0,
+            "Analgesia" : 0,
+            "Terapia Manual Osteopatia" : 0,
+            "Terapia Manual Manipulação" : 0
+        }
         for consulta in consultas:
             if ExameTratamento.objects.filter(consulta_id = consulta).filter(criacao__range = (inicio, fim)).exists():
                 count_examen_complementares += 1
+            if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "R").filter(criacao__range = (inicio, fim)).exists():
+                count_manutencao["Recovery"] += 1
+            if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "A").filter(criacao__range = (inicio, fim)).exists():
+                count_manutencao["Analgesia"] += 1
+            if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "O").filter(criacao__range = (inicio, fim)).exists():
+                count_manutencao["Terapia Manual Osteopatia"] += 1
+            if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").filter(criacao__range = (inicio, fim)).exists():
+                count_manutencao["Terapia Manual Manipulação"] += 1
 
         for e_lesionada in e_lesionadas:
             count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(criacao__range = (inicio, fim)).count()    
@@ -237,10 +267,11 @@ def relatorio_consulta(request, atleta_id):
 
     dados = {
         "usuario":usuario_i,
-        "atleta":atleta_id,
+        "atleta":atleta,
         "ex_complementares" : count_examen_complementares,
         "count_lesionadas": count_lesionadas,
-        "count_partes": count_parte_corpo
+        "count_partes": count_parte_corpo,
+        "count_manutencoes": count_manutencao,
     }
 
     return render(request, 'consultas/relatorio_consulta.html',dados)
