@@ -22,13 +22,14 @@
     <section id="consulta-atleta">
         <div class="caixa">
             <ul>
+                {% if manutencao == "N" %}
                 <li>
                     <table class="table container">
                         <thead>
                             <tr>
                                 <th class="titulo">
                                     <h2>Entrada</h2>
-                                    {% if entrada == "N" %}
+                                    {% if entrada == "N" and manutencao == "N" %}
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#entrada">
                                         <h3>+</h3>
@@ -63,6 +64,8 @@
                         {% endif %}
                     </table>
                 </li>
+                {% endif %}
+                {% if entrada != "N" %}
                 <li>
                     <table class="table container">
                         <thead>
@@ -90,7 +93,7 @@
                                     <p>Observação: {{tratamento.justificativa}}</p>
                                 </td>
                             </tr>
-                            {% if complemento == "N" %}
+                            {% if complemento == "N" and saida == "N" %}
                             <tr>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -127,6 +130,8 @@
                         {% endif %}
                     </table>
                 </li>
+                {% endif %}
+                {% if tratamento != "N" %}
                 <li>
                     <table class="table container">
                         <thead>
@@ -158,6 +163,8 @@
                         </tbody>
                     </table>
                 </li>
+                {% endif %}
+                {% if entrada == "N" %}
                 <li>
                     <table class="table container">
                         <thead>
@@ -194,6 +201,7 @@
                         </tbody>
                     </table>
                 </li>
+                {% endif %}
             </ul>
             <div class="modal fade" id="entrada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

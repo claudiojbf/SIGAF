@@ -43,9 +43,11 @@
                                 
                                 <p class="gestor-atletas-informaçao-titulo">Camisa</p>
                                 <p class="gestor-atletas-informaçao-conteudo">{{atleta.camisa_atual}}</p>
+                                <a class="gestor-atletas-informaçao-link-conteudo" href="{% url 'visualizar_atleta_consulta' atleta.id %}">
                                 <div class="gestor-atletas-informaçao-link">
-                                <p><a class="gestor-atletas-informaçao-conteudo" href="{% url 'visualizar_atleta_consulta' atleta.id %}">Veja Mais</a></p>
+                                    <p>Veja Mais</p>
                                 </div>
+                                </a>
                             </div>
                         </div>
                         {% endfor %}
