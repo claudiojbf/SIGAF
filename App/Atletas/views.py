@@ -115,11 +115,11 @@ def cadastrar_atleta(request, modalidade_id):
         # validações para indentificadores (rg, cpf)
         if Atleta.objects.filter(rg = rg).exists():
             messages.error(request, 'Um atleta com esse RG já foi cadastrado')
-            return redirect('cadastrodeAtletas')
+            return redirect('cadastrar_atleta', modalidade.id)
 
         if Atleta.objects.filter(cpf = cpf).exists():
             messages.error(request, 'Um atleta com esse CPF já foi cadastrado')
-            return redirect('cadastrodeAtletas')
+            return redirect('cadastrar_atleta', modalidade.id)
         
         atleta = Atleta.objects.create(
             modalidade = modalidade,

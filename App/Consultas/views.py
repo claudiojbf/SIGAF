@@ -205,8 +205,12 @@ def relatorio_consulta(request, atleta_id):
     count_examen_complementares = 0
     e_lesionadas = EstruturaLesionada.objects.all()
     count_lesionadas = {}
+    for e_lesionada in e_lesionadas:
+        count_lesionadas[e_lesionada.estrutura_lesionada] = 0
     p_corpos = RegiaoDoCorpo.objects.all()
     count_parte_corpo = {}
+    for p_corpo in p_corpos:
+        count_parte_corpo[p_corpo.parte_do_corpo] = 0
     count_manutencao = {
         "Recovery" : 0,
         "Analgesia" : 0,
@@ -225,12 +229,15 @@ def relatorio_consulta(request, atleta_id):
         if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").exists():
             count_manutencao["Terapia Manual Manipulação"] += 1
         
-    for e_lesionada in e_lesionadas:
-        count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).count()    
-        count_lesionadas[e_lesionada.estrutura_lesionada] = count
-    for p_corpo in p_corpos:
-        count = Entrada.objects.filter(regiao_corpo_id = p_corpo).count
-        count_parte_corpo[p_corpo.parte_do_corpo] = count
+    for consulta in consultas:
+        for e_lesionada in e_lesionadas:
+            if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).exists():
+                count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).count()    
+                count_lesionadas[e_lesionada.estrutura_lesionada] = count
+        for p_corpo in p_corpos:
+            if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).exists():
+                count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).count
+                count_parte_corpo[p_corpo.parte_do_corpo] = count
     
 
     if request.method == "POST":
@@ -255,12 +262,15 @@ def relatorio_consulta(request, atleta_id):
             if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").filter(criacao__range = (inicio, fim)).exists():
                 count_manutencao["Terapia Manual Manipulação"] += 1
 
-        for e_lesionada in e_lesionadas:
-            count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(criacao__range = (inicio, fim)).count()    
-            count_lesionadas[e_lesionada.estrutura_lesionada] = count
-        for p_corpo in p_corpos:
-            count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(criacao__range = (inicio, fim)).count
-            count_parte_corpo[p_corpo.parte_do_corpo] = count
+        for consulta in consultas:
+            for e_lesionada in e_lesionadas:
+                if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).exists():
+                    count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(criacao__range = (inicio, fim)).count()    
+                    count_lesionadas[e_lesionada.estrutura_lesionada] = count
+            for p_corpo in p_corpos:
+                if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).exists():
+                    count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(criacao__range = (inicio, fim)).count
+                    count_parte_corpo[p_corpo.parte_do_corpo] = count
 
     
         
