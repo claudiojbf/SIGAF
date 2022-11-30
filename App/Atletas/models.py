@@ -95,3 +95,31 @@ class Atleta(models.Model):
 
     class Meta:
         db_table = '"atletas"."atleta"'
+
+class Jogos(models.Model):
+    POSICAO = (
+        ("T", "Titular"),
+        ("R", "Reserva")
+    )
+    criacao = models.DateTimeField(auto_now_add=True)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
+    descricao_jogo = models.CharField(max_length=200)
+    posicao = models.CharField(max_length=1, choices=POSICAO)
+    minutos_jogados = models.DecimalField(decimal_places=2, max_digits=5)
+    gols = models.IntegerField()
+    finalizacoes = models.IntegerField()
+    toques = models.IntegerField()
+    passes_certos = models.IntegerField()
+
+
+
+    def conversao_de_gols(self):
+        resultado = (self.gols/self.finalizacoes) * 100
+        return resultado 
+
+    def porcentagem_de_passes(self):
+        resultado = (self.passes_certos/self.toques) * 100
+        return resultado
+
+    class Meta:
+        db_table = '"atletas"."jogos"'

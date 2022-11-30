@@ -16,6 +16,8 @@
                     <img src="{{atleta.foto_atleta.url}}" alt="">
                 </div>
                 <div class="botao-div">
+                    <a href="{% url 'listar_jogos' atleta.id%}"><button class="btn botao botao-editar">Jogos</button></a>
+                    
                     <a href="{% url 'editar_atleta' atleta.id atleta.modalidade.id %}"><button class="btn botao botao-editar">Editar</button></a>
 
                     <div class="botao-modal-div modal-foto-perfil">

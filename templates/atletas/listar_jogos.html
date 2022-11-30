@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/Consultas/listar_consultas.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'partials/_menu.html' %}
+<!-- <section>
+        <h1>Lista de Consultas</h1>
+    </section> -->
+<section id="lista-consulta">
+    <button type="button" data-bs-toggle="modal"
+    data-bs-target="#cadastro_jogo" class="btn btn-primary btn-sm botao">Cadastrar Jogo</button>
+    <a href="{% url 'relatorio_jogos' atleta.id %}"><button type="button" class="btn btn-primary btn-sm botao">Relatorio</button></a>
+    <ul class="lista">
+        {% for jogo in jogos %}
+        <li>
+            <p><i>{{jogo.descricao_jogo}} - {{jogo.criacao}}</i></p>
+            <a href="{% url 'jogo_atleta' jogo.id %}"><button type="button" class="btn btn-primary btn-sm">conferir</button></a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<div class="modal fade" id="cadastro_jogo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Jogo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{% url 'cadastrar_jogo' atleta.id %}">{% csrf_token %}
+            <div class="modal-body">
+                <label for="titulo" class="col-form-label">Titulo do Jogo</label>
+                <input type="text" class="form-control" name="descricao" id="titulo" required>
+                <label for="parte" class="col-form-label">Parte do Corpo</label>
+                <select id="parte" class="form-select" name="posicao" aria-label="Default select example">            
+                    <option value="T">Titular</option>
+                    <option value="R">Reserva</option>
+                </select>
+                <label for="minutos" class="col-form-label">Minutos Jogados</label>
+                <input type="number" class="form-control" name="minutos" id="minutos" required>
+                <label for="gols" class="col-form-label">Gols Marcados</label>
+                <input type="number" class="form-control" name="gols" id="gols" required>
+                <label for="finalizacoes" class="col-form-label">Finalizacoes</label>
+                <input type="number" class="form-control" name="finalizacoes" id="finalizacoes" required>
+                <label for="toques" class="col-form-label">Toques</label>
+                <input type="number" class="form-control" name="toques" id="toques" required>
+                <label for="passes" class="col-form-label">Passes Certos</label>
+                <input type="number" class="form-control" name="passes" id="passes" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                <button type="submit" class="btn btn-primary">enviar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

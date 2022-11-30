@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} Gestor - CEFAT {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/Consultas/consulta_atleta.css' %}">
+{% endblock %}
+{% block content %}   
+    {% include 'partials/_menu.html' %}
+    <section class="funcionarios-container">
+        <div class="funcionarios-card">
+            <div>
+                <img src="{{jogo.atleta.foto_atleta.url}}" alt="">
+            </div>
+            <div class="funcionarios-card-info">
+                <p>{{jogo.atleta.nome}}</p>
+                <p>Modalidade: {{jogo.atleta.modalidade.nome_da_modalidade}}</p>
+                <p>Posicao: {{jogo.atleta.posicao.posicao}}</p>
+                <p>Camisa: {{jogo.atleta.camisa_atual}}</p>
+            </div>
+        </div>
+    </section>
+    <section id="consulta-atleta">
+        <div class="caixa">
+            <ul>
+                <li>
+                    <table class="table container">
+                        <thead>
+                            <tr>
+                                <th class="titulo" style="margin:0 auto;">
+                                    <h2 style="margin:0 auto;">{{jogo.descricao_jogo}}</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Posição: {{jogo.get_posicao_display}} </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Minutos Jogados: {{jogo.minutos_jogados}} Min</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Gols: {{jogo.gols}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Finalizações: {{jogo.finalizacoes}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Porcentagem de Gols: {{jogo.conversao_de_gols|floatformat:2}}%</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Toques: {{jogo.toques}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Passes Certos: {{jogo.passes_certos}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Porcentagem de Passes: {{jogo.porcentagem_de_passes|floatformat:2}}%</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    
+{% endblock %}

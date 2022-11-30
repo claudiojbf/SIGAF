@@ -233,3 +233,110 @@ def alterar_foto_atleta(request, atleta_id):
         atleta.save()
         return redirect('visualizar_atleta', atleta.id)
     return redirect('visualizar_atleta', atleta.id)
+
+@login_required(login_url='login')
+def listar_jogos(request, atleta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    atleta = Atleta.objects.get(pk=atleta_id)
+    jogos = Jogos.objects.filter(atleta_id = atleta).order_by('-criacao')
+
+    dados = {
+        "usuario":usuario_i,
+        "atleta":atleta,
+        "jogos": jogos
+    }
+
+    return render(request, 'atletas/listar_jogos.html', dados)
+
+@login_required(login_url='login')
+def cadastrar_jogo(request, atleta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    atleta = Atleta.objects.get(pk=atleta_id)
+    if request.method == "POST":
+        descricao_jogo = request.POST.get("descricao")
+        posicao = request.POST.get("posicao")
+        minutos_jogados = request.POST.get("minutos")
+        gols = request.POST.get("gols")
+        finalizacoes = request.POST.get("finalizacoes")
+        toques = request.POST.get("toques")
+        passes_certos = request.POST.get("passes")
+
+        jogo = Jogos.objects.create(
+            atleta = atleta,
+            descricao_jogo = descricao_jogo,
+            posicao = posicao,
+            minutos_jogados = minutos_jogados,
+            gols = gols,
+            finalizacoes = finalizacoes,
+            toques = toques,
+            passes_certos = passes_certos
+        )
+
+        jogo.save()
+    return redirect("listar_jogos", atleta_id)
+
+@login_required(login_url='login')
+def visualizar_jogo(request, jogo_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    jogo = Jogos.objects.get(pk = jogo_id)
+
+    dados = {
+        "usuario" : usuario_i,
+        "jogo" : jogo
+    }
+
+    return render(request, 'atletas/jogo_atleta.html', dados)
+
+@login_required(login_url='login')
+def relatorio_jogos(request, atleta_id):
+    usuario = request.user.id
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
+    jogos = Jogos.objects.filter(atleta_id = atleta_id)
+    if request.method == "POST":
+        inicio = request.POST.get('inicio')
+        fim = request.POST.get('fim')
+        jogos = Jogos.objects.filter(atleta_id = atleta_id).filter(criacao__range = (inicio, fim))
+
+    jogos_d = {
+        "Titular" : 0,
+        "Minutos Jogados": 0,
+        "Gols": 0,
+        "Finalizações": 0,
+        "Conversão de Gols": 0,
+        "Toques": 0,
+        "Passes Certos": 0,
+        "Porcentagem de Passes" : 0 
+    }
+    for jogo in jogos:
+        if jogo.posicao == "T":
+            jogos_d["Titular"] += 1
+        jogos_d["Minutos Jogados"] += jogo.minutos_jogados
+        jogos_d["Gols"] += jogo.gols
+        jogos_d["Finalizações"] += jogo.finalizacoes
+        jogos_d["Toques"] += jogo.toques
+        jogos_d["Passes Certos"] += jogo.passes_certos
+        jogos_d["Conversão de Gols"] += jogo.conversao_de_gols()
+        jogos_d["Porcentagem de Passes"] += jogo.porcentagem_de_passes()
+    
+    if len(jogos) != 0:
+        jogos_d["Titular"] = jogos_d["Titular"] / len(jogos)
+        jogos_d["Minutos Jogados"] = jogos_d["Minutos Jogados"] / len(jogos)
+        jogos_d["Gols"] = jogos_d["Gols"] / len(jogos)
+        jogos_d["Finalizações"] = jogos_d["Finalizações"] / len(jogos)
+        jogos_d["Toques"] = jogos_d["Toques"] / len(jogos)
+        jogos_d["Passes Certos"] = jogos_d["Passes Certos"] / len(jogos)
+        jogos_d["Conversão de Gols"] = jogos_d["Conversão de Gols"] / len(jogos)
+        jogos_d["Porcentagem de Passes"] = jogos_d["Porcentagem de Passes"] / len(jogos)
+
+    dados = {
+        "usuario" : usuario_i,
+        "jogos" : jogos_d,
+        "atleta" : atleta_id
+    }
+
+    return render(request, "atletas/relatorio_jogos.html", dados)
+
+
