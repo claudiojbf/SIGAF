@@ -214,9 +214,8 @@ def editar_atleta(request, atleta_id, modalidade_id):
         posicao = request.POST['posicao']
         posicao_i = get_object_or_404(Posicao, pk=posicao)
         atleta.posicao = posicao_i
-        atleta.camisa = request.POST['camisa']
-        atleta.status = request.POST['status']
-        print(request.POST['status'])
+        if request.POST['camisa'].isdigit():
+            atleta.camisa = request.POST['camisa']
         atleta.save()
         
         return redirect('visualizar_atleta', atleta.id)

@@ -5,13 +5,17 @@
 
 /* CSS DO BODY */
 body{
-    background-color: #1e1e1e;
+    background-color: #1e1e1e;       
+}
+
+main{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    margin-bottom: 20px;
 }
+
 h1{
     color: white;
 }

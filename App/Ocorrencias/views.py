@@ -8,17 +8,17 @@ from App.Usuario.models import Usuario
 def IndexFacilities(request, status=""):
     usuario = request.user.id
     usuario_i = Usuario.objects.get(usuario_id = usuario)
-    ocorrencias = Ocorrencia.objects.all().order_by("-id")
+    ocorrencias = Ocorrencia.objects.all().order_by("-data_de_criacao")
     o_abertos = Ocorrencia.objects.filter(status="ABT").count()
     o_em_andamento = Ocorrencia.objects.filter(status="EA").count()
     o_concluido = Ocorrencia.objects.filter(status="C").count()
 
     if status == "ABT":
-        ocorrencias = Ocorrencia.objects.filter(status="ABT")
+        ocorrencias = Ocorrencia.objects.filter(status="ABT").order_by("-data_de_criacao")
     elif status == "EA": 
-        ocorrencias = Ocorrencia.objects.filter(status="EA")
+        ocorrencias = Ocorrencia.objects.filter(status="EA").order_by("-data_de_criacao")
     elif status == "C":
-        ocorrencias = Ocorrencia.objects.filter(status="C")
+        ocorrencias = Ocorrencia.objects.filter(status="C").order_by("-data_de_criacao")
 
     dados = {
         "usuario":usuario_i,

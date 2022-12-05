@@ -7,6 +7,7 @@
 {% block content %}
 {% include 'partials/_menu.html' %}
 
+<main>
 <section>
     <!-- <h1>Ocorrencias</h1> -->
 </section>
@@ -66,5 +67,6 @@
         <a href="{% url 'alterar_status_ocorrencia' ocorrencia.id 3 %}"><button class="botao botao-concluido">Concluído</button></a>
     </div>         
 </section>
+</main>
 {% include 'partials/rodape.html' %}
 {% endblock %}

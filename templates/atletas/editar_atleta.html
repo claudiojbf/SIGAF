@@ -131,13 +131,11 @@
                             {% endfor %}
                         </select>
                     </div>
-
-                    <div class="input-duplo">
                         <div>
                             <label for="Camisa" class="form-label cadastro-label">Camisa</label>
                             <input id="Camisa" class="form-control cadastro-input" value="{{atleta.camisa_atual}}" type="text" name="camisa" value="">
                         </div>
-                        <div>
+                        <!-- <div>
                             <label for="Status" class="form-label cadastro-label">Status:</label>
                             {% if atleta.status == True %}
                                 <input name="status" type="radio" value="{{True}}" checked>Disponivel
@@ -146,8 +144,8 @@
                                 <input name="status" type="radio" value="{{True}}" >Disponivel
                                 <input name="status" type="radio" value="{{False}}" checked>Indisponivel
                             {% endif %}
-                        </div>
-                    </div>
+                        </div> -->
+                
 
                 <button type="submit" class="botao">Enviar</button>
             </div>

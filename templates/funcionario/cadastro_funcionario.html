@@ -6,9 +6,7 @@
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
-    <section>
-        <h1>Cadastro de Funcionário</h1>
-    </section>
+    <main>
     <section class="cadastro">
         <form class="steps" action="{% url 'cadastro_funcionario' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -145,6 +143,7 @@
                 </div>
         </form>
     </section>
+</main>
 
     {% include 'partials/rodape.html' %}
 
