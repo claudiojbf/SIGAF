@@ -9,6 +9,7 @@
     <!-- <section>
         <h1>Lista de Consultas</h1>
     </section> -->
+    <main>
     <section id="lista-consulta">
         <a href="{% url 'criar_consulta' atleta %}"><button type="button"
             class="btn btn-primary btn-sm botao">Iniciar Consulta</button></a>
@@ -24,4 +25,6 @@
             {% endfor %}
         </ul>
     </section>
+</main>
+    {% include 'partials/rodape.html' %}
 {% endblock %}

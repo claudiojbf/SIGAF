@@ -6,9 +6,7 @@
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
-    <section>
-        <h1>Atleta/h1>
-    </section>
+    <main>
     <section class="principal-atleta">
         <div>
             <div class="atleta-container">
@@ -150,10 +148,7 @@
                         <p class="atleta-info-titulo">Peso:</p>
                         <p class="atleta-info-conteudo">{{atleta.peso_tratado}}</p>
                     </div>
-                    <div>
-                        <p class="atleta-info-titulo">Status:</p>
-                        <p class="atleta-info-conteudo">{{atleta.status_atual}}</p>
-                    </div>
+                
                     <div>
                         <p class="atleta-info-titulo"> Plano de Saude:</p>
                         <p class="atleta-info-conteudo">{{atleta.plano_saude}}</p>
@@ -190,4 +185,6 @@
             </div>
         </div>
     </section>
+</main>
+    {% include 'partials/rodape.html' %}
 {% endblock %}

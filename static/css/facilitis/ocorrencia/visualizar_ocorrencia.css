@@ -1,7 +1,7 @@
 /* CSS DO HTML */
-html,body{
+/* html,body{
     width: 100%;
-}
+} */
 
 /* CSS DO BODY */
 body{
@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family:'Montserrat';
+    
 }
 h1{
     color: white;

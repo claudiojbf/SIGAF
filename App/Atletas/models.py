@@ -114,12 +114,18 @@ class Jogos(models.Model):
 
 
     def conversao_de_gols(self):
-        resultado = (self.gols/self.finalizacoes) * 100
-        return resultado 
+        if self.finalizacoes == 0:
+            return 0
+        else:
+            resultado = (self.gols/self.finalizacoes) * 100
+            return resultado 
 
     def porcentagem_de_passes(self):
-        resultado = (self.passes_certos/self.toques) * 100
-        return resultado
+        if self.toques == 0:
+            return 0
+        else:
+            resultado = (self.passes_certos/self.toques) * 100
+            return resultado
 
     class Meta:
         db_table = '"atletas"."jogos"'

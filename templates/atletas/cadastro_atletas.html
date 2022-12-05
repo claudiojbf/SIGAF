@@ -6,9 +6,7 @@
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
-    <section>
-        <h1>Cadastro de atletas</h1>
-    </section>
+    <main>
     <section class="cadastro">
         <form class="formulario" action="{% url 'cadastrar_atleta' modalidade.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}   
             {% include 'partials/_alert.html' %}
@@ -149,5 +147,6 @@
             </div>
         </form>
     </section>
-
+</main>
+    {% include 'partials/rodape.html' %}
 {% endblock %}

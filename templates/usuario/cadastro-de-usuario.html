@@ -6,9 +6,7 @@
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
-    <section>
-        <h1>Cadastro de Usuário</h1>
-    </section>
+    <main>
     <section class="cadastro">
         <form class="steps" action="{% url 'cadastro_usuario' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -110,7 +108,8 @@
             <span id="bullet-3"> </span>
         </div>
     </section>
-
+</main>
+    {% include 'partials/rodape.html' %}
     <!-- LINK JQUERY / JS -->
     
     <script src="{% static 'js/step.js'%}"></script>

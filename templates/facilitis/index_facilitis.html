@@ -6,44 +6,102 @@
 {% endblock %}
 {% block content %}
 {% include 'partials/_menu.html' %}
-    <main>
-        <section class="ocorrencias">
-            <div class="indices">
-                <a href="{% url 'index_facilitis' 'ABT' %}"><div class="indice indice-pendente">
+<!-- <main>
+    <section class="ocorrencias">
+        <div class="indices">
+            <a href="{% url 'index_facilitis' 'ABT' %}">
+                <div class="indice indice-pendente">
                     <p>Abertos</p>
-                    <div><p>{{aberto}}</p></div>
-                </div></a>
-                <a href="{% url 'index_facilitis' 'EA' %}"><div class="indice indice-processo">
-                    <p>Em Andamento</p>
-                    <div><p>{{andamento}}</p></div>
-                </div></a>
-                <a href="{% url 'index_facilitis' 'C' %}"><div class="indice indice-resolvido">
-                    <p>Concluidos</p>
-                    <div><p>{{concluido}}</p></div>
-                </div></a>
-            </div>
-
-            <div class="ocorrencia-container">
-                <div class="ocorrencias-titulo">
-                    <p>Ocorrências</p>
-                </div>
-                <div class="swiper slide-content-ocorrencia">
-                    <div class="swiper-wrapper">
-                        {% for ocorrencia in ocorrencias %}
-                        <div class="swiper-slide slide-ocorrencia">
-                            <p><a href="{% url 'visualizar_ocorrencia' ocorrencia.id %}">{{ocorrencia.titulo_da_ocorrencia}}</a></p>
-                        </div>
-                        {% endfor %}
+                    <div>
+                        <p>{{aberto}}</p>
                     </div>
-                    <div class="swiper-scrollbar paginaçao"></div>
                 </div>
+            </a>
+            <a href="{% url 'index_facilitis' 'EA' %}">
+                <div class="indice indice-processo">
+                    <p>Em Andamento</p>
+                    <div>
+                        <p>{{andamento}}</p>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'index_facilitis' 'C' %}">
+                <div class="indice indice-resolvido">
+                    <p>Concluidos</p>
+                    <div>
+                        <p>{{concluido}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="ocorrencia-container">
+            <div class="ocorrencias-titulo">
+                <p>Ocorrências</p>
             </div>
-        </section>
+            <div class="swiper slide-content-ocorrencia">
+                <div class="swiper-wrapper">
+                    {% for ocorrencia in ocorrencias %}
+                    <div class="swiper-slide slide-ocorrencia">
+                        <p><a
+                            href="{% url 'visualizar_ocorrencia' ocorrencia.id %}">{{ocorrencia.titulo_da_ocorrencia}}</a>
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>                
+            </div>
+        </div>
+    </section>
+</main> -->
 
-    <!-- Link Swiper JS -->
+<header>
+
+</header>
+<main>
+    <section class="ocorrencias">
+        <div class="indices">
+            <a href="{% url 'index_facilitis' 'ABT' %}">
+            <div class="indice indice-pendente">
+                <p>Pendentes</p>
+                <div><p>{{aberto}}</p></div>
+            </div>
+            </a>
+            <a href="{% url 'index_facilitis' 'EA' %}">
+            <div class="indice indice-processo">
+                <p>Em processo</p>
+                <div><p>{{andamento}}</p></div>
+            </div>
+            </a>
+            <a href="{% url 'index_facilitis' 'C' %}">
+            <div class="indice indice-resolvido">
+                <p>Concluidos</p>
+                <div><p>{{concluido}}</p></div>
+            </div>
+            </a>
+        </div>
+
+        <div class="ocorrencia-container">
+            <div class="ocorrencias-titulo">
+                <p>Ocorrências</p>
+            </div>
+            <div class="slide-content-ocorrencia">
+                {% for ocorrencia in ocorrencias %}
+                <div class="slide-ocorrencia">
+                    <p><a
+                        href="{% url 'visualizar_ocorrencia' ocorrencia.id %}">{{ocorrencia.titulo_da_ocorrencia}}</a>
+                    </p>
+                </div>
+                {% endfor %}
+                <div class="swiper-scrollbar paginaçao"></div>
+            </div>
+
+            
+
+        </div>
+    </section>
+</main>
+{% include 'partials/rodape.html' %}
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <!-- JS -->
-    <script src="{% static 'js/ocorrencia.js' %}"></script>
 
-    </main>
+    <script src="{% static 'js/ocorrencia.js' %}"></script>
 {% endblock %}

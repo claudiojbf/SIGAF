@@ -6,11 +6,13 @@ html,body{
 /* CSS DO BODY */
 body{
     background-color: #1e1e1e;
+}
+main{
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    font-family:'Montserrat';
+    align-items: center;
+    margin-bottom: 20px;
 }
 h1{
     color: white;
@@ -25,7 +27,7 @@ p{
     width: 70%;
     padding: 0 0 30px 0;
     background-color: white;
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 .principal-atleta>div{

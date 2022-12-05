@@ -6,6 +6,7 @@
 {% endblock %}
 {% block content %}   
     {% include 'partials/_menu.html' %}
+    <main>
     <section id="img-regiao">
         <div class="botao_retorno">
             <a href="{% url 'retornar_consulta' consulta.id %}"><button>Retornar</button></a> 
@@ -14,4 +15,6 @@
             <img src="{{exame.imagem_exame.url}}" class="img-fluid" alt="">
         </div>
     </section>
+</main>
+    {% include 'partials/rodape.html' %}
 {% endblock %}

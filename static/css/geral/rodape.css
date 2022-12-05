@@ -1,0 +1,22 @@
+/* html{
+    width: 100%;
+    height: 100px;
+} */
+
+/* body{
+    width: 100%;
+    height: 100%;
+} */
+
+.rodape div{
+    width: 100%;
+    height: 100px;
+    background-color: #064597;
+}
+
+.rodape div>p{
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 15px;
+}

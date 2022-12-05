@@ -7,11 +7,14 @@ html,body{
 /* CSS DO BODY */
 body{
     background-color: #1e1e1e;
+}
+main{
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    font-family:'Montserrat';
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
 }
 h1{
     color: white;

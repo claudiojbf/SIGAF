@@ -6,10 +6,7 @@
 {% endblock %}
 {% block content %}
     {% include 'partials/_menu.html' %}
-    <!-- <section>
-        <h1>Perfil</h1>
-    </section> -->
-    
+    <main>
     <section class="perfil">
       {% include 'partials/_alert.html'%}
         <div class="perfil-img">
@@ -134,5 +131,6 @@
       </div>
   </div>
     </section>
-
+  </main>
+{% include 'partials/rodape.html' %}
 {% endblock %}
