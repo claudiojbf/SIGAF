@@ -38,6 +38,7 @@ class RegiaoDoCorpo(models.Model):
 
 class Entrada(Base):
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     estrutura_lesionada = models.ForeignKey(EstruturaLesionada, on_delete=models.CASCADE)
     regiao_corpo = models.ForeignKey(RegiaoDoCorpo, on_delete=models.CASCADE)
     observacao = models.TextField()
@@ -58,6 +59,7 @@ class ExamesComplementares(models.Model):
         db_table = '"consultas"."examecomplementares"'
 
 class Tratamento(Base):
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
     justificativa = models.TextField()
     
@@ -70,6 +72,7 @@ class Tratamento(Base):
 
 class ExameTratamento(Base):
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     exame_complementar = models.ForeignKey(ExamesComplementares, on_delete=models.CASCADE)
     imagem_exame = models.ImageField(upload_to = 'FotoExames',blank=True, null=True)
     justificativa_complementares = models.TextField()
@@ -82,6 +85,7 @@ class ExameTratamento(Base):
 
 class Saida(Base):
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     justificativa = models.TextField()
 
     def __str__(self):
@@ -98,6 +102,7 @@ class Manutencao(Base):
         ("M", "Terapia Manual Manipulação"),
     )
     tipo_manutencao = models.CharField(max_length=1, choices=TIPO)
+    atleta = models.ForeignKey(Atleta, on_delete=models.CASCADE)
     consulta = models.ForeignKey(Consulta, on_delete=models.CASCADE)
     justificativa = models.TextField()
 

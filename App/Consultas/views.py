@@ -103,6 +103,7 @@ def consulta_geral(request, consulta_id):
 @login_required(login_url='login')
 def criar_entrada(request, consulta_id):
     consultas = get_object_or_404(Consulta, pk = consulta_id)
+    atleta = get_object_or_404(Atleta, pk= consultas.atleta_id)
     if request.method == "POST":
         estrutura = request.POST['estrutura']
         estrutura_i = get_object_or_404(EstruturaLesionada, pk = estrutura)
@@ -110,7 +111,8 @@ def criar_entrada(request, consulta_id):
         parte_i = get_object_or_404(RegiaoDoCorpo, pk = parte)
         observacao = request.POST['observacao']
         entrada = Entrada.objects.create(
-            consulta = consultas, 
+            consulta = consultas,
+            atleta = atleta, 
             estrutura_lesionada = estrutura_i,
             regiao_corpo = parte_i,
             observacao = observacao
@@ -121,10 +123,12 @@ def criar_entrada(request, consulta_id):
 @login_required(login_url='login')
 def criar_tratamento(request, consulta_id):
     consultas = get_object_or_404(Consulta, pk = consulta_id)
+    atleta = get_object_or_404(Atleta, pk= consultas.atleta_id)
     if request.method == "POST":
         observacao = request.POST['observacao']
         tratamento = Tratamento.objects.create(
             consulta = consultas,
+            atleta = atleta,
             justificativa = observacao
         )
         tratamento.save()
@@ -134,17 +138,20 @@ def criar_tratamento(request, consulta_id):
 @login_required(login_url='login')
 def criar_exame_complementar(request, consulta_id):
     consultas = get_object_or_404(Consulta, pk = consulta_id)
+    atleta = get_object_or_404(Atleta, pk= consultas.atleta_id)
     if request.method == "POST":
         exame = get_object_or_404(ExamesComplementares, pk = request.POST['exame'])
         imagem = request.FILES['image_exame']
         observacao = request.POST['observacao']
 
         complemento = ExameTratamento.objects.create(
+            atleta = atleta,
             consulta = consultas,
             exame_complementar = exame,
             imagem_exame = imagem,
             justificativa_complementares = observacao
         )
+        complemento.save()
         
 
     return redirect("consulta_geral", consulta_id)
@@ -152,10 +159,12 @@ def criar_exame_complementar(request, consulta_id):
 @login_required(login_url='login')
 def criar_saida(request, consulta_id):
     consultas = get_object_or_404(Consulta, pk = consulta_id)
+    atleta = get_object_or_404(Atleta, pk= consultas.atleta_id)
     if request.method == "POST":
         observacao = request.POST['observacao']
         saida = Saida.objects.create(
             consulta = consultas,
+            atleta = atleta,
             justificativa = observacao
         )
         saida.save()
@@ -165,11 +174,13 @@ def criar_saida(request, consulta_id):
 @login_required(login_url='login')
 def criar_manutencao(request, consulta_id):
     consultas = get_object_or_404(Consulta, pk = consulta_id)
+    atleta = get_object_or_404(Atleta, pk= consultas.atleta_id)
     if request.method == "POST":
         tipo_manutencao = request.POST['tipo_manutencao']
         observacao = request.POST['observacao']
         manutencao = Manutencao.objects.create(
             consulta = consultas,
+            atleta = atleta,
             tipo_manutencao = tipo_manutencao,
             justificativa = observacao
         )
@@ -206,11 +217,13 @@ def relatorio_consulta(request, atleta_id):
     e_lesionadas = EstruturaLesionada.objects.all()
     count_lesionadas = {}
     for e_lesionada in e_lesionadas:
-        count_lesionadas[e_lesionada.estrutura_lesionada] = 0
+        if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(atleta_id=atleta).exists():
+            count_lesionadas[e_lesionada.estrutura_lesionada] = 0
     p_corpos = RegiaoDoCorpo.objects.all()
     count_parte_corpo = {}
     for p_corpo in p_corpos:
-        count_parte_corpo[p_corpo.parte_do_corpo] = 0
+        if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(atleta_id = atleta).exists():
+            count_parte_corpo[p_corpo.parte_do_corpo] = 0
     count_manutencao = {
         "Recovery" : 0,
         "Analgesia" : 0,
@@ -229,15 +242,14 @@ def relatorio_consulta(request, atleta_id):
         if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").exists():
             count_manutencao["Terapia Manual Manipulação"] += 1
         
-    for consulta in consultas:
-        for e_lesionada in e_lesionadas:
-            if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).exists():
-                count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).count()    
-                count_lesionadas[e_lesionada.estrutura_lesionada] = count
-        for p_corpo in p_corpos:
-            if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).exists():
-                count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).count
-                count_parte_corpo[p_corpo.parte_do_corpo] = count
+    for e_lesionada in e_lesionadas:
+        if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(atleta_id = atleta).exists():
+            count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(atleta_id = atleta).count()   
+            count_lesionadas[e_lesionada.estrutura_lesionada] += count
+    for p_corpo in p_corpos:
+        if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(atleta_id = atleta).exists():
+            count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(atleta_id = atleta).count
+            count_parte_corpo[p_corpo.parte_do_corpo] = count
     
 
     if request.method == "POST":
@@ -262,15 +274,15 @@ def relatorio_consulta(request, atleta_id):
             if Manutencao.objects.filter(consulta_id = consulta).filter(tipo_manutencao = "M").filter(criacao__range = (inicio, fim)).exists():
                 count_manutencao["Terapia Manual Manipulação"] += 1
 
-        for consulta in consultas:
-            for e_lesionada in e_lesionadas:
-                if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(consulta_id = consulta).exists():
-                    count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(criacao__range = (inicio, fim)).count()    
-                    count_lesionadas[e_lesionada.estrutura_lesionada] = count
-            for p_corpo in p_corpos:
-                if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(consulta_id = consulta).exists():
-                    count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(criacao__range = (inicio, fim)).count
-                    count_parte_corpo[p_corpo.parte_do_corpo] = count
+        for e_lesionada in e_lesionadas:
+            if Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(atleta_id = atleta).exists():
+                count = Entrada.objects.filter(estrutura_lesionada_id = e_lesionada).filter(atleta_id = atleta).filter(criacao__range = (inicio, fim)).count()    
+                print(count)
+                count_lesionadas[e_lesionada.estrutura_lesionada] = count
+        for p_corpo in p_corpos:
+            if Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(atleta_id = atleta).exists():
+                count = Entrada.objects.filter(regiao_corpo_id = p_corpo).filter(atleta_id= atleta).filter(criacao__range = (inicio, fim)).count
+                count_parte_corpo[p_corpo.parte_do_corpo] = count
 
     
         

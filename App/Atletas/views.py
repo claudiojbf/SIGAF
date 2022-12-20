@@ -178,7 +178,7 @@ def deletar_atleta(request, atleta_id):
 @login_required(login_url="login")
 def editar_atleta(request, atleta_id, modalidade_id):
     usuario = request.user.id
-    usuario_i = get_object_or_404(Usuario, pk=usuario)
+    usuario_i = Usuario.objects.get(usuario_id = usuario)
     atleta = get_object_or_404(Atleta, pk=atleta_id)
     data_banco = atleta.data_nascimento
     data = str(data_banco).split(" ")
